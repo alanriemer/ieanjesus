@@ -16,7 +16,7 @@
 		<div class="box-body">
 	
 							
-			<table id="example1" class="table table-hover table-condensed table-bordered table-striped text-center">
+			<table id="actas" class="table table-hover table-condensed table-bordered table-striped text-center">
                 <thead>
                     <tr>
                         <th class="text-center"></th>

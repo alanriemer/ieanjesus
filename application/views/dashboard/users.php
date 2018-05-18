@@ -10,37 +10,20 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <!-- mostrando los usuarios -->
-                        <table id="example1" class="table table-hover table-condensed table-bordered table-striped ">
+                        <table id="users" class="table table-hover table-condensed table-bordered table-striped text-center">
                             <thead>
                                 <tr>
-                                    <th class="text-center">N°</th>
+                                    <th class="text-center">id</th>
                                     <th class="text-center">Nombres y Apellidos</th>
                                     <th class="text-center">Correo</th>
                                     <th class="text-center">Usuario</th>
-                                    <th class="text-center">Actualizado</th>
-                                    <th class="text-center">Opciones</th>
+                                    <th class="text-center">Id Congregación</th>
+                        
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <?php $i=0; ?>
-                                <?php foreach ($users as $user): ?>
-                                    <tr> 
-                                        <td class="text-center"><?php echo $i=$i+1; ?></td>
-                                        <td ><a href="http://"><?php echo $user['nombre_completo']; ?></a></td>   
-                                        <td ><?php echo $user['correo']; ?></td> 
-                                        <td class="text-center"><?php echo $user['usuario']; ?></td>
-                                        <td class="text-center"><?php echo $user['id_congregacion']; ?></td>
-                                        <td class="text-center">
-                                            
-                                            <button type="button" class="btn btn-primary btn-flat btn-xs"><span class="fa fa-eye"></span></button>
-                                            <button type="button" class="btn btn-primary btn-flat btn-xs"> <span class="fa fa-edit"></span> </button>
-                                            <button type="button" class="btn btn-primary btn-flat btn-xs"> <span class="fa fa-trash-o"></span></button>
-                                            
-                                        </td>
-                                
-                                    </tr> 
-                                <?php endforeach; ?>
+                      
                             </tbody>
                         </table>
                     </div>

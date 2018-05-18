@@ -580,7 +580,7 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3><?php echo count($users); ?></h3>
+              <h3><?php echo count($users->result_array()); ?></h3>
               
               
               <p>Usuarios Registrados</p>
@@ -624,8 +624,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2018 IEANJESUS.</strong> Derechos reservados.
   </footer>
 
   <!-- Control Sidebar -->
@@ -650,7 +649,7 @@
                 <h4 class="control-sidebar-subheading">Hoy cumplen años</h4>';
 			foreach ($cumpleaneros as $row) 
 			{ 
-				echo '<p>' .$row->nombre_pastor . '</p>';
+				echo '<p>' .$row->nombres_completos . '</p>';
 			
 			
 			} 
@@ -1023,9 +1022,47 @@ var appMap = new Vue({
   });
 </script>
 
+<script language="JavaScript"  type="text/javascript">
+$(document).ready(function (){
+    var table = $('#users').DataTable({
+        language: {
+            "emptyTable":     "No hay datos disponibles en esta tabla.",
+            "info":           "Mostrando _START_ a _END_ de un total de _TOTAL_ registros.",
+            "infoEmpty":      "Mostrando 0 a 0 de 0 registros.",
+            "lengthMenu":     "Muestra _MENU_ registros.",
+            "loadingRecords": "Cargando...",
+            "processing":     "Procesando...",
+            "search":         "Buscar:",
+            "paginate": {
+                "first":      "Primero",
+                "last":       "Ultimo",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            }
+            
+        },
+        ajax: {
+            url:"http://test.ieanjesusoficial.org/api/get_users",
+            type:"GET"},
+        deferRender: true,
+        responsive: {
+            details: {
+                type: 'column'
+            }
+        },
+        columnDefs: [ {
+            className: 'control',
+            orderable: false,
+            targets:   0
+        } ],
+        order: [ 1, 'asc' ]
+    });
+
+});
+</script>
 <script>
   $(function () {
-    $('#example1').DataTable({
+    $('#actas').DataTable({
         "language": {
             "emptyTable":     "No hay datos disponibles en esta tabla.",
             "info":           "Mostrando _START_ a _END_ de un total de _TOTAL_ registros.",
@@ -1043,16 +1080,10 @@ var appMap = new Vue({
             
         }
     })
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
+
   })
 </script>
+
 <script  language="JavaScript"  type="text/javascript" >
 
 $(function() {
@@ -1095,6 +1126,7 @@ $(function() {
 </script>
 <script src="/vendor/dist/ckeditor/ckeditor.js"></script>
 	<script src="/vendor/dist/ckfinder/ckfinder.js"></script>
+	
 
 <script type="text/javascript">
 $('#cuerpoo').ckeditor(function(){ 

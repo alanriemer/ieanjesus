@@ -8,6 +8,44 @@ class Api extends CI_Controller {
         $this->load->model('users_model');
     }
 
+
+    public function get_users(){
+    	if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+
+        // Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+
+
+          $users = $this->users_model->get_users();
+
+          $data = array();
+
+          foreach($users->result() as $r) {
+
+               $data[] = array(
+                    $r->id,
+                    $r->nombre_completo,
+                    $r->correo,
+                    $r->usuario,
+                    $r->id_congregacion
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => $users->num_rows(),
+                 "recordsFiltered" => $users->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+            
+    }
+
     public function get_provincias(){
     	if(!$this->session->userdata('logueado')){
     		redirect(base_url().'login');	
@@ -15,6 +53,7 @@ class Api extends CI_Controller {
             echo json_encode($this->actas_model->get_provincias(1));
             
     }
+
 
     public function get_canton(){
     	if(!$this->session->userdata('logueado')){

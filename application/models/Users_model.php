@@ -8,8 +8,9 @@ class Users_model extends CI_Model{
 
     public function get_users()
     {
-        $query = $this->db->get('tbl_usuario');
-        return $query->result_array();
+        $this->db->select('id,  nombre_completo , correo, usuario, id_congregacion');
+        return $this->db->get('tbl_usuario');
+
             
     }
     public function get_userinfo($id)
@@ -38,7 +39,7 @@ class Users_model extends CI_Model{
 	
 	    public function get_cumpleaneros()
     {
-	    $query = $this->db->query("select nombre_pastor, correo from tbl_pastor inner join tbl_usuario on tbl_pastor.cedula = tbl_usuario.usuario where DATE_FORMAT(fcha_nac, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d') and tbl_pastor.estado = 's' and correo IS NOT NULL");
+	    $query = $this->db->query("select nombres_completos, correo from tbl_pastor inner join tbl_usuario on tbl_pastor.cedula = tbl_usuario.usuario where DATE_FORMAT(fcha_nac, '%m-%d') = DATE_FORMAT(NOW(), '%m-%d') and tbl_pastor.estado = 's' and correo IS NOT NULL");
 	    $result = $query->result();
     	 return $result;
         
