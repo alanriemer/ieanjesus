@@ -6,7 +6,11 @@ class Pastores_model extends CI_Model{
     }
 
     public function get_pastores(){
-        $query = $this->db->get('tbl_pastor');
-        return $query->result_array();
+        $this->db->select('*');
+        $this->db->from('tbl_pastor AS A');// I use aliasing make joins easier
+        $this->db->join('tbl_iglesia AS C', 'A.id_congregacion = C.id_congregacion', 'INNER');
+        $this->db->join('tbl_congregacionales AS B', 'B.id = C.id_congregacion', 'INNER');
+        $this->db->where('A.estado', 's');
+        return $query = $this->db->get();
     }
 }

@@ -8,8 +8,15 @@ class Users_model extends CI_Model{
 
     public function get_users()
     {
-        $this->db->select('id,  nombre_completo , correo, usuario, id_congregacion');
-        return $this->db->get('tbl_usuario');
+        $this->db->select('*');
+        $this->db->from('tbl_usuario AS A');// I use aliasing make joins easier
+        $this->db->join('tbl_iglesia AS C', 'A.id_congregacion = C.id_congregacion', 'INNER');
+        $this->db->join('tbl_congregacionales AS B', 'B.id = C.id_congregacion', 'INNER');
+        $this->db->where('A.estado', 's');
+        return $this->db->get();
+        
+        
+        
 
             
     }

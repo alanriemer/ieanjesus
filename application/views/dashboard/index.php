@@ -565,9 +565,9 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3><?php echo $porcentaje; ?><sup style="font-size: 20px">%</sup></h3>
 
-              <p>Bounce Rate</p>
+              <p><?php echo $nombre_iglesia; ?></p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -596,14 +596,14 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3><?php echo count($pastores); ?></h3>
+              <h3><?php echo count($pastores->result_array()); ?></h3>
 
               <p>Pastores Activos</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url(); ?>dashboard/pastores" class="small-box-footer">Mas información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -1043,6 +1043,44 @@ $(document).ready(function (){
         },
         ajax: {
             url:"http://test.ieanjesusoficial.org/api/get_users",
+            type:"GET"},
+        deferRender: true,
+        responsive: {
+            details: {
+                type: 'column'
+            }
+        },
+        columnDefs: [ {
+            className: 'control',
+            orderable: false,
+            targets:   0
+        } ],
+        order: [ 1, 'asc' ]
+    });
+
+});
+</script>
+<script language="JavaScript"  type="text/javascript">
+$(document).ready(function (){
+    var table = $('#pastores').DataTable({
+        language: {
+            "emptyTable":     "No hay datos disponibles en esta tabla.",
+            "info":           "Mostrando _START_ a _END_ de un total de _TOTAL_ registros.",
+            "infoEmpty":      "Mostrando 0 a 0 de 0 registros.",
+            "lengthMenu":     "Muestra _MENU_ registros.",
+            "loadingRecords": "Cargando...",
+            "processing":     "Procesando...",
+            "search":         "Buscar:",
+            "paginate": {
+                "first":      "Primero",
+                "last":       "Ultimo",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            }
+            
+        },
+        ajax: {
+            url:"http://test.ieanjesusoficial.org/api/get_pastores",
             type:"GET"},
         deferRender: true,
         responsive: {

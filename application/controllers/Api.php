@@ -6,6 +6,7 @@ class Api extends CI_Controller {
         parent::__construct();
         $this->load->model('actas_model');
         $this->load->model('users_model');
+        $this->load->model('pastores_model');
     }
 
 
@@ -31,7 +32,7 @@ class Api extends CI_Controller {
                     $r->nombre_completo,
                     $r->correo,
                     $r->usuario,
-                    $r->id_congregacion
+                    $r->nombre_iglesia
                );
           }
 
@@ -45,6 +46,46 @@ class Api extends CI_Controller {
           exit();
             
     }
+    
+    public function get_pastores(){
+    	if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+
+        // Datatables Variables
+          $draw = intval($this->input->get("draw"));
+          $start = intval($this->input->get("start"));
+          $length = intval($this->input->get("length"));
+
+
+          $users = $this->pastores_model->get_pastores();
+
+          $data = array();
+          
+          foreach($users->result() as $r) {
+               $foto_pastor = explode("/", $r->foto_pastor);
+               $foto_pastor = ($foto_pastor[3] != 'sinfoto.jpg') ? "<img src='/uploads/foto_pastor/$foto_pastor[3]' width='90px;'>" : "No tiene foto";
+               $data[] = array(
+                    $r->id,
+                    $foto_pastor,
+                    $r->nombre_pastor,
+                    $r->apellido_pastor,
+                    $r->cedula,
+                    $r->fcha_nac,
+                    $r->nombre_iglesia
+               );
+          }
+
+          $output = array(
+               "draw" => $draw,
+                 "recordsTotal" => $users->num_rows(),
+                 "recordsFiltered" => $users->num_rows(),
+                 "data" => $data
+            );
+          echo json_encode($output);
+          exit();
+            
+    }    
 
     public function get_provincias(){
     	if(!$this->session->userdata('logueado')){
