@@ -66,9 +66,9 @@
     <!-- Logo -->
     <a href="<?php echo base_url(); ?>dashboard" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>IEAN</b>JESUS</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>IEAN</b>JESUS</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -279,17 +279,18 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url(); ?>vendor/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo base_url(); ?>uploads/foto_pastor/<?php echo $infouser['foto']; ?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo strtoupper($infouser['nombre_completo']) ; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo base_url(); ?>vendor/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url(); ?>uploads/foto_pastor/<?php echo $infouser['foto']; ?>" class="img-circle" alt="User Image">
 
                 <p>
                   <?php echo strtoupper($infouser['nombre_completo'])  ; ?>
-                  <small>Miembro desde <?php // echo $infouser['fecha_ingreso'] ; ?></small>
+                  <small>Miembro de <?php  echo $infouser['nombre_iglesia'] ; ?></small>
+                  <small><b><?php  echo $infouser['nombre_perfil'] ; ?></b></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -310,10 +311,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url(); ?>autentication/cerrar_sesion" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo base_url(); ?>autentication/cerrar_sesion" class="btn btn-default btn-flat">Salir</a>
                 </div>
               </li>
             </ul>
@@ -333,7 +334,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo base_url(); ?>vendor/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url(); ?>uploads/foto_pastor/<?php echo $infouser['foto']; ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php echo strtoupper($infouser['nombre_completo'])  ; ?></p>
@@ -362,8 +363,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+            <li class="active"><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-circle-o"></i> Administración</a></li>
+            <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-circle-o"></i> Iglesia local </a></li>
           </ul>
         </li>
         <li><a href="<?php echo base_url();?>dashboard/actas"><i class="fa fa-book"></i> <span>Actas</span></a></li>
@@ -550,14 +551,14 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3><?php echo $total_congregacion->total;?></h3>
 
-              <p>New Orders</p>
+              <p>Total general</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -572,7 +573,7 @@
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url();?>dashboard/echart" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -641,7 +642,7 @@
         <h3 class="control-sidebar-heading">Recent Activity</h3>
         <ul class="control-sidebar-menu">
           <li>
-            <a href="javascript:void(0)">
+            <a >
 			<?php 
 			echo  '<i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
@@ -649,7 +650,9 @@
                 <h4 class="control-sidebar-subheading">Hoy cumplen años</h4>';
 			foreach ($cumpleaneros as $row) 
 			{ 
-				echo '<p>' .$row->nombres_completos . '</p>';
+			    $foto_pastor = explode("/", $row->foto_pastor);
+			    $img = "<img src='".base_url()."uploads/foto_pastor/".$foto_pastor[3]."' width='90px;'/>";
+				echo '<p data-toggle="tooltip" title="'.$img.'">' .$row->nombres_completos . '</p>';
 			
 			
 			} 
@@ -887,54 +890,51 @@
 <script src="<?php echo base_url(); ?>vendor/dist/js/demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script>
- 
-    
- 
-    function initMap(){
-      
-      var base = $('#baseurl').val(); 
-      console.log(base);
-      loc = [];
+function initMap(){
+  
+  var base = $('#baseurl').val(); 
+  console.log(base);
+  loc = [];
 
-      $.ajax({
-        url: base + "ajax/iglesias",
-        type: 'get',
-        dataType: 'json',
-        success: function(data){
-          var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 7,
-            center: new google.maps.LatLng(-2.0000000, -77.5000000),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          });
-
-          var infowindow = new google.maps.InfoWindow();
-
-          var marker, i;
-
-          for (var i = 0; i < data.iglesias.length; i++) {
-            
-            loc[i]= [data.iglesias[i]['direccion'], parseFloat(data.iglesias[i]['latitud']), parseFloat(data.iglesias[i]['longitud']), i+1 ];
-            marker = new google.maps.Marker({
-              position: new google.maps.LatLng(parseFloat(data.iglesias[i]['latitud']), parseFloat(data.iglesias[i]['longitud'])),
-              map: map
-            });
-
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                infowindow.setContent("<b>"+data.iglesias[i]['congregacion']+"</b><br><small>"+data.iglesias[i]['direccion']+"</small>");
-                infowindow.open(map, marker);
-              }
-            })(marker, i));
-          }
-
-         
-
-        }
+  $.ajax({
+    url: base + "ajax/iglesias",
+    type: 'get',
+    dataType: 'json',
+    success: function(data){
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 7,
+        center: new google.maps.LatLng(-2.0000000, -77.5000000),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
       });
-       
-      
-      
+
+      var infowindow = new google.maps.InfoWindow();
+
+      var marker, i;
+
+      for (var i = 0; i < data.iglesias.length; i++) {
+        
+        loc[i]= [data.iglesias[i]['direccion'], parseFloat(data.iglesias[i]['latitud']), parseFloat(data.iglesias[i]['longitud']), i+1 ];
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(parseFloat(data.iglesias[i]['latitud']), parseFloat(data.iglesias[i]['longitud'])),
+          map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent("<b>"+data.iglesias[i]['congregacion']+"</b><br><small>"+data.iglesias[i]['direccion']+"</small>");
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+      }
+
+     
+
     }
+  });
+   
+  
+  
+}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL2EQGNcyxUPgYgV4y9wxinlZuz7zL2Ms&callback=initMap" async defer></script>
 
@@ -1055,8 +1055,12 @@ $(document).ready(function (){
             orderable: false,
             targets:   0
         } ],
-        order: [ 1, 'asc' ]
+        order: [ 1, 'asc' ],
+        lengthMenu: [ 5,10, 25, 50, 75, 100 ],
+        pageLength: 5
+ 
     });
+     
 
 });
 </script>
@@ -1088,12 +1092,23 @@ $(document).ready(function (){
                 type: 'column'
             }
         },
-        columnDefs: [ {
-            className: 'control',
-            orderable: false,
-            targets:   0
-        } ],
-        order: [ 1, 'asc' ]
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            {
+              "data": "first_name", // can be null or undefined
+              "defaultContent": '<div class="dropdown"><button class="btn btn-info btn-sm btn-flat dropdown-toggle" type="button" data-toggle="dropdown">Opciones<span class="caret"></span></button><ul class="dropdown-menu">     <li><a href="#" title="Enviar Acta"><i class="fa fa-paper-plane"></i> Enviar Acta</a></li> <li><a href="#" title="Modificar usuario"><i class="glyphicon glyphicon-cloud-upload"></i> Eliminar usuario</a> </li><li><a href="#" title="Asignar permisos"><i class="fa fa-file"></i> Visualizar Digital</a></li> <li><a href="#" title="Ver usuario"><i class="fa fa-eye"></i> Ver Acta</a></li> </ul></div>'
+            }
+            
+          ],
+        order: [ 1, 'asc' ],
+        lengthMenu: [ 5,10, 25, 50, 75, 100 ],
+        pageLength: 5
     });
 
 });
@@ -1171,5 +1186,177 @@ $('#cuerpoo').ckeditor(function(){
           CKFinder.setupCKEditor( this, '/vendor/dist/ckfinder/' ); 
 });
 </script>
+        <script src="<?php echo base_url(); ?>vendor/echarts/dist/echarts-en.js"></script>
+
+
+<script type="text/javascript">
+var base = $('#baseurl').val(); 
+
+$.get( base + "ajax/ajaxGetTotalMiembros", { id_congregacion: $('#idc').val() }, function(data ) {
+  var myChart = echarts.init(document.getElementById('main'));
+  var categorias = new Array();
+  var serie = new Array();
+  $.each(data, function(i, item) {
+    //console.log(item.fcha_bautizo);
+    //console.log(item.total);
+    categorias.push(item.fcha_bautizo);
+    serie.push(item.total);
+  });
+
+  option = {
+    title: {
+        text: $('#nombreIglesia').val(),
+        subtext: 'Cantidad de miembros nuevos por año',
+        x:'center'
+    },
+    backgroundColor: '#eee',
+    // legend: {
+    //     data: categorias,
+    //     align: 'left',
+    //     left: 10
+    // },
+    // toolbox: {
+    //     feature: {
+    //         magicType: {
+    //             type: ['stack', 'tiled']
+    //         },
+    //         dataView: {}
+    //     }
+    // },
+    tooltip: {},
+    xAxis: {
+        type: 'category',
+        //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: categorias
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        //data: [120, 200, 150, 80, 70, 110, 130],
+        label: {
+                normal: {
+                    show: true,
+                    position: 'inside'
+                }
+            },
+        data: serie,
+        type: 'bar'
+    }]
+};
+
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+
+}, "json" );
+
+
+
+
+
+
+// for (var i = 0; i < data.iglesias.length; i++) {
+            
+//             loc[i]= [data.iglesias[i]['direccion'], parseFloat(data.iglesias[i]['latitud']), parseFloat(data.iglesias[i]['longitud']), i+1 ];
+//             marker = new google.maps.Marker({
+//               position: new google.maps.LatLng(parseFloat(data.iglesias[i]['latitud']), parseFloat(data.iglesias[i]['longitud'])),
+//               map: map
+//             });
+
+//             google.maps.event.addListener(marker, 'click', (function(marker, i) {
+//               return function() {
+//                 infowindow.setContent("<b>"+data.iglesias[i]['congregacion']+"</b><br><small>"+data.iglesias[i]['direccion']+"</small>");
+//                 infowindow.open(map, marker);
+//               }
+//             })(marker, i));
+//           }
+
+
+
+$.get( base + "ajax/ajaxGetTotalMiembros", { id_congregacion: $('#idc').val() }, function(data ) {
+  var myChart = echarts.init(document.getElementById('main1'));
+  var categorias = new Array();
+  var serie = new Array();
+  $.each(data, function(i, item) {
+    //console.log(item.fcha_bautizo);
+    //console.log(item.total);
+    categorias.push(item.fcha_bautizo);
+    serie.push(item.total);
+  });
+   console.log('La longitud: '+ serie.length);
+   var porcentaje = new Array();
+  for (var i=0; i < serie.length; i++){
+    console.log(serie[i]);
+    porcentaje.push(((serie[i])/serie[i-1]).toFixed(1));
+    // if (i==1){
+    //   porcentaje.push(0);
+    // }else{
+    //   porcentaje.push(((serie[i]*100)/serie[i-1]).toFixed(2));  
+    // }
+
+  }
+  for (var i=0; i < porcentaje.length; i++){
+    console.log(porcentaje[i]);
+  }
+
+
+  option = {
+    title: {
+        text: $('#nombreIglesia').val(),
+        subtext: 'Crecimiento de miembros de la iglesia - Expresado en Porcentaje',
+        x:'center'
+    },
+    backgroundColor: '#eee',
+    legend: {
+        data: categorias,
+        align: 'left',
+        left: 10
+    },
+    // toolbox: {
+    //     show: true,
+    //     feature: {
+    //         dataView: {readOnly: false},
+    //         restore: {},
+    //         saveAsImage: {}
+    //     }
+    // },
+    tooltip: {},
+    xAxis: {
+        type: 'category',
+        //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: categorias
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        //data: [120, 200, 150, 80, 70, 110, 130],
+        label: {
+                normal: {
+                    show: true,
+                    position: 'inside'
+              }
+            },
+        data: porcentaje,
+        type: 'bar'
+    }]
+};
+
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+
+}, "json" );
+
+
+        //Practica
+        
+    </script>
+<script>
+    $('p[data-toggle="tooltip"]').tooltip({
+    animated: 'fade',
+    placement: 'left',
+    html: true
+});
+    </script>
 </body>
 </html>

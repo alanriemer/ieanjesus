@@ -19,7 +19,7 @@ class Api extends CI_Controller {
           $draw = intval($this->input->get("draw"));
           $start = intval($this->input->get("start"));
           $length = intval($this->input->get("length"));
-
+        
 
           $users = $this->users_model->get_users();
 
@@ -32,6 +32,7 @@ class Api extends CI_Controller {
                     $r->nombre_completo,
                     $r->correo,
                     $r->usuario,
+                    $r->nombre_perfil,
                     $r->nombre_iglesia
                );
           }
@@ -64,7 +65,8 @@ class Api extends CI_Controller {
           
           foreach($users->result() as $r) {
                $foto_pastor = explode("/", $r->foto_pastor);
-               $foto_pastor = ($foto_pastor[3] != 'sinfoto.jpg') ? "<img src='/uploads/foto_pastor/$foto_pastor[3]' width='90px;'>" : "No tiene foto";
+
+               $foto_pastor = ($foto_pastor[3] != '') ? "<img src='/uploads/foto_pastor/$foto_pastor[3]' width='90px;'>" : "No tiene foto";
                $data[] = array(
                     $r->id,
                     $foto_pastor,

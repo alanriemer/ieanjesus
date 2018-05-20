@@ -1,4 +1,5 @@
-
+<!-- Main content -->
+<div class="content">
 <section class="col-lg-12 connectedSortable ui-sortable">
     <div class="box box-success">
 		<div class="box-header ui-sortable-handle">
@@ -8,10 +9,6 @@
 		        <a href="https://ieanjesusoficial.org/webPDF/web/viewer.php" target="_blank" class="btn btn-primary btn-sm btn-flat" role="button"> <span class="fa fa-book" ></span> Libro Actas</a>
 		        <a data-toggle="modal" data-target="#nuevaActa"class="btn btn-success btn-sm btn-flat" role="button"><span class="glyphicon glyphicon-plus" ></span>Nueva acta</a>
 		    </div>	
-		
-			
-						
-		
 		</div>
 		<div class="box-body">
 	
@@ -75,16 +72,8 @@
             </table>				
 		</div>
 	</div>
-			    		      
-				    
-				</div>
-
-
-		</div>
-
-	</div>
 </section>
-
+</div>
 <!--Modal alta de acta -->
 <?php $alta_acta; ?>
 <!--Modal alta de acta -->
