@@ -19,6 +19,8 @@ class Dashboard extends CI_Controller {
 		$id_user = $this->session->userdata('id');
 		$data['infouser'] = $this->users_model->get_userinfo($id_user);  
 		$data['total_congregacion'] = $this->users_model->get_total_congregacion( $data['infouser']['id_congregacion']);
+		$data['total_congregacion_hombres'] = $this->users_model->get_total_congregacion_hombres( $data['infouser']['id_congregacion']);
+		$data['total_congregacion_mujeres'] = $this->users_model->get_total_congregacion_mujeres( $data['infouser']['id_congregacion']);
 		$data['cumpleaneros'] = $this->users_model->get_cumpleaneros(); 	
 		$data['iglesias'] = $this->iglesias_model->get_iglesias();
         $data['arreglo'] = $this->iglesias_model->get_iglesia_pastor_congregacion();
@@ -37,12 +39,18 @@ class Dashboard extends CI_Controller {
     		$id_user = $this->session->userdata('id');
     		$data['infouser'] = $this->users_model->get_userinfo($id_user); 
     		$data['total_congregacion'] = $this->users_model->get_total_congregacion( $data['infouser']['id_congregacion']);
+    		$data['total_congregacion_hombres'] = $this->users_model->get_total_congregacion_hombres( $data['infouser']['id_congregacion']);
+		    $data['total_congregacion_mujeres'] = $this->users_model->get_total_congregacion_mujeres( $data['infouser']['id_congregacion']);
     		$data['cumpleaneros'] = $this->users_model->get_cumpleaneros(); 	
     		$data['iglesias'] = $this->iglesias_model->get_iglesias();
             $data['arreglo'] = $this->iglesias_model->get_iglesia_pastor_congregacion();
             $data['pastores'] = $this->pastores_model->get_pastores();
             $data['nombre_iglesia'] = $this->session->userdata('nombre_iglesia');
             $data['porcentaje'] = $this->iglesias_model->porcentajeCrecimiento($this->session->userdata('id_congregacion'));
+            
+            $data['congregaciones'] = $this->users_model->get_congregaciones(); 
+            $data['perfiles'] = $this->users_model->get_perfiles(); 
+            $data['alta_user'] = $this->load->view('users/alta_user', $data);
     		$data['page'] = $this->load->view('dashboard/users', $data, TRUE);
             $this->load->view('dashboard/index', $data);
 	}
@@ -55,11 +63,13 @@ class Dashboard extends CI_Controller {
     		$id_user = $this->session->userdata('id');
     		$data['infouser'] = $this->users_model->get_userinfo($id_user); 
     		$data['total_congregacion'] = $this->users_model->get_total_congregacion( $data['infouser']['id_congregacion']);
+    		$data['total_congregacion_hombres'] = $this->users_model->get_total_congregacion_hombres( $data['infouser']['id_congregacion']);
+		    $data['total_congregacion_mujeres'] = $this->users_model->get_total_congregacion_mujeres( $data['infouser']['id_congregacion']);
     		$data['cumpleaneros'] = $this->users_model->get_cumpleaneros(); 	
     		$data['iglesias'] = $this->iglesias_model->get_iglesias();
             $data['arreglo'] = $this->iglesias_model->get_iglesia_pastor_congregacion();
             $data['pastores'] = $this->pastores_model->get_pastores();
-             $data['nombre_iglesia'] = $this->session->userdata('nombre_iglesia');
+            $data['nombre_iglesia'] = $this->session->userdata('nombre_iglesia');
             $data['porcentaje'] = $this->iglesias_model->porcentajeCrecimiento($this->session->userdata('id_congregacion'));
     		$data['page'] = $this->load->view('dashboard/pastores', $data, TRUE);
             $this->load->view('dashboard/index', $data);
@@ -73,6 +83,8 @@ class Dashboard extends CI_Controller {
     		$id_user = $this->session->userdata('id');
     		$data['infouser'] = $this->users_model->get_userinfo($id_user); 
     		$data['total_congregacion'] = $this->users_model->get_total_congregacion( $data['infouser']['id_congregacion']);
+    		$data['total_congregacion_hombres'] = $this->users_model->get_total_congregacion_hombres( $data['infouser']['id_congregacion']);
+		    $data['total_congregacion_mujeres'] = $this->users_model->get_total_congregacion_mujeres( $data['infouser']['id_congregacion']);
     		$data['cumpleaneros'] = $this->users_model->get_cumpleaneros(); 	
     		$data['iglesias'] = $this->iglesias_model->get_iglesias();
             $data['pastores'] = $this->pastores_model->get_pastores();
@@ -101,6 +113,8 @@ class Dashboard extends CI_Controller {
 		$id_user = $this->session->userdata('id');
 		$data['infouser'] = $this->users_model->get_userinfo($id_user);  
 		$data['total_congregacion'] = $this->users_model->get_total_congregacion( $data['infouser']['id_congregacion']);
+		$data['total_congregacion_hombres'] = $this->users_model->get_total_congregacion_hombres( $data['infouser']['id_congregacion']);
+		$data['total_congregacion_mujeres'] = $this->users_model->get_total_congregacion_mujeres( $data['infouser']['id_congregacion']);
 		$data['cumpleaneros'] = $this->users_model->get_cumpleaneros(); 
 		$data['nombre_iglesia'] = $this->session->userdata('nombre_iglesia');
 		$data['porcentaje'] = $this->iglesias_model->porcentajeCrecimiento($this->session->userdata('id_congregacion'));

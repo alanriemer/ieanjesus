@@ -6,7 +6,7 @@
     			<i class='fa fa-users'></i><h3 class="box-title">Listado de usuarios registrados</h3>
     			
     			<div class="box-tools pull-right">	
-    		        <a data-toggle="modal" data-target="#nuevaActa"class="btn btn-warning btn-sm btn-flat" role="button"><span class="glyphicon glyphicon-plus" ></span>Nuevo usuario</a>
+    		        <a data-toggle="modal" data-target="#nuevoUser"class="btn btn-warning btn-sm btn-flat" role="button"><span class="glyphicon glyphicon-plus" ></span>Nuevo usuario</a>
     		    </div>	
     		</div>
             <!-- /.box-header -->
@@ -15,6 +15,7 @@
                 <table id="users" class="table table-hover table-condensed table-bordered table-striped text-center">
                     <thead>
                         <tr>
+                            <th class="text-center">Opciones</th>
                             <th class="text-center">id</th>
                             <th class="text-center">Nombres y Apellidos</th>
                             <th class="text-center">Correo</th>
@@ -35,7 +36,9 @@
         </div>
             
 </section>
-</div>
+
     <!-- /.content -->
+<!--Modal alta user -->
+<?php $alta_user; ?>    
 
-
+</div>

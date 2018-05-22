@@ -56,6 +56,21 @@
       height: 400px;
       
     }
+    .zoom:hover {
+        transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+    
+    .small-box .datos_iglesia{
+        -webkit-transition: all .3s linear;
+        -o-transition: all .3s linear;
+        /* transition: all .3s linear; */
+        position: absolute;
+        top: 11px;
+        right: 80px;
+        z-index: 0;
+        font-size: 90px;
+
+}
   </style>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -552,9 +567,15 @@
           <div class="small-box bg-aqua">
             <div class="inner">
               <h3><?php echo $total_congregacion->total;?></h3>
-
               <p>Total general</p>
             </div>
+            <div class="datos_iglesia">
+                <h6><b>Hombres:</b> <?php echo $total_congregacion_hombres->total;?></h6>
+                <h6><b>Mujeres:</b> <?php echo $total_congregacion_mujeres->total;?></h6>
+               </div>
+              
+
+                       
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
@@ -1051,16 +1072,29 @@ $(document).ready(function (){
             }
         },
         columnDefs: [ {
-            className: 'control',
-            orderable: false,
-            targets:   0
-        } ],
+        "targets": 0,
+        "data": null,
+        "defaultContent": "<button type='button' class='btn btn-primary btn-flat btn-xs'><span class='fa fa-eye'></span></button><button type='button' class='btn btn-primary btn-flat btn-xs'> <span class='fa fa-edit'></span> </button><button type='button' id='deleteUser' class='btn btn-primary btn-flat btn-xs'> <span class='fa fa-trash-o'></span></button>"
+    } ],
         order: [ 1, 'asc' ],
         lengthMenu: [ 5,10, 25, 50, 75, 100 ],
         pageLength: 5
  
     });
-     
+    
+    $('#users tbody').on( 'click', 'button', function () {
+    var data = table.row( $(this).parents('tr') ).data();
+    var r = confirm("¿Está seguro que desea borrar el usuario?");
+    if (r == true) {
+        document.body.innerHTML += '<form id="deleteUser" action="/api/eliminar_usuario" method="post"><input type="hidden" name="id" value="'+data[1]+'"></form>';
+        document.getElementById("deleteUser").submit();
+        txt = "Usuario Eliminado";
+    } else {
+    }
+    
+    } );
+    
+   
 
 });
 </script>
@@ -1358,5 +1392,13 @@ $.get( base + "ajax/ajaxGetTotalMiembros", { id_congregacion: $('#idc').val() },
     html: true
 });
     </script>
+<script>    
+$('#id_congregacion').selectize({
+    create: true,
+    sortField: 'text'
+});    
+</script>    
+    
+    
 </body>
 </html>

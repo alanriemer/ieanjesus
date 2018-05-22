@@ -28,6 +28,7 @@ class Api extends CI_Controller {
           foreach($users->result() as $r) {
 
                $data[] = array(
+                    '',
                     $r->id,
                     $r->nombre_completo,
                     $r->correo,
@@ -66,7 +67,7 @@ class Api extends CI_Controller {
           foreach($users->result() as $r) {
                $foto_pastor = explode("/", $r->foto_pastor);
 
-               $foto_pastor = ($foto_pastor[3] != '') ? "<img src='/uploads/foto_pastor/$foto_pastor[3]' width='90px;'>" : "No tiene foto";
+               $foto_pastor = ($foto_pastor[3] != '') ? "<img class='zoom' src='/uploads/foto_pastor/$foto_pastor[3]' width='90px;'>" : "No tiene foto";
                $data[] = array(
                     $r->id,
                     $foto_pastor,
@@ -115,9 +116,9 @@ class Api extends CI_Controller {
     }
     
     public function alta_acta(){
-    if(!$this->session->userdata('logueado')){
-		redirect(base_url().'login');	
-	}    
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}    
 	    $id_user = $this->session->userdata('id');
 		$infouser = $this->users_model->get_userinfo($id_user);  
 		$idprovincia = $this->input->post('provincia');
@@ -144,4 +145,36 @@ class Api extends CI_Controller {
 		redirect(base_url().'dashboard/actas');
 	}
 	
+	
+    public function alta_usuario(){
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}    
+		$idprovincia = $this->input->post('provincia');
+	    $insert = array(
+	        'id_congregacion' =>$this->input->post('congregacion'),
+            'firma' => '../archivos_ieanjesus/firma/',
+            'nombre'=> $this->input->post('nombres'),
+            'apellido' => $this->input->post('apellidos'),
+            'usuario' => $this->input->post('usuario'),
+            'passsword' => $this->input->post('password'),
+            'id_perfil' =>$this->input->post('perfil'),
+            'correo' =>$this->input->post('correo'),
+            'nombre_completo' => $this->input->post('nombres'). $this->input->post('apellidos'),
+            'foto_usuario' =>  $this->input->post('foto'),
+            'estado' => $this->input->post('estado')
+            );
+		$this->users_model->alta_usuario($insert);
+		redirect(base_url().'dashboard/users');
+	}	
+	
+    public function eliminar_usuario(){
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}    
+		$id_usuario = $this->input->post('id');
+		$this->users_model->eliminar_usuario($id_usuario);
+		redirect(base_url().'dashboard/users');
+	}	
+		
 }
