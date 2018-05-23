@@ -1,12 +1,14 @@
 <!-- Main content -->
+
 <div class="content">
-<section class="col-lg-12 connectedSortable ui-sortable">
+
+<section class="col-md-12 connectedSortable ui-sortable">
         <div class="box box-warning">
     		<div class="box-header ui-sortable-handle">
     			<i class='fa fa-users'></i><h3 class="box-title">Listado de usuarios registrados</h3>
     			
     			<div class="box-tools pull-right">	
-    		        <a data-toggle="modal" data-target="#nuevoUser"class="btn btn-warning btn-sm btn-flat" role="button"><span class="glyphicon glyphicon-plus" ></span>Nuevo usuario</a>
+    		        <a href="<?php echo base_url();?>dashboard/crear_usuario"class="btn btn-warning btn-sm btn-flat" role="button"><span class="glyphicon glyphicon-plus" ></span>Nuevo usuario</a>
     		    </div>	
     		</div>
             <!-- /.box-header -->
@@ -38,7 +40,7 @@
 </section>
 
     <!-- /.content -->
-<!--Modal alta user -->
-<?php $alta_user; ?>    
+
+  
 
 </div>

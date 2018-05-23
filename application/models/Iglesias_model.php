@@ -40,10 +40,22 @@ from `tbl_iglesia` i INNER JOIN `tbl_congregacionales` c on i.`id_congregacion` 
         $result = $query->result();
         return $result;
     }
-    
+
     public function paraGraficaTotalMiembros($id){
         $query = $this->db->query("
-            Select l.id_congregacion, year(l.fcha_bautizo) as fcha_bautizo, count(*) as total
+            Select count(*) as total, year(l.fcha_bautizo) as fcha_bautizo
+            from tbl_personal l
+            where l.id_congregacion = ".$id." 
+                   and l.fcha_bautizo is not NULL 
+                   and l.fcha_bautizo != '0000-00-00'
+            group by year(l.fcha_bautizo)
+            order by l.fcha_bautizo");
+    return $query->result_array();
+    }
+
+    public function paraGraficaTotalMiembrosPorcentaje($id){
+        $query = $this->db->query("
+            Select count(*) as value, year(l.fcha_bautizo) as name
             from tbl_personal l
             where l.id_congregacion = ".$id." 
                    and l.fcha_bautizo is not NULL 
@@ -85,4 +97,50 @@ from `tbl_iglesia` i INNER JOIN `tbl_congregacionales` c on i.`id_congregacion` 
         $query = $this->db->get('tbl_usuario');
         return $query->row()->id_congregacion;
   }
+
+  public function paraGraficaNacionalidad($id){
+    $query = $this->db->query("
+       Select  count(*) as value,  l.nacionalidad as name
+       from tbl_personal l
+       where l.id_congregacion = ".$id." 
+        and l.estado in ('s','d')
+       group by l.nacionalidad
+       order by l.nacionalidad");
+    return $query->result_array();
+}
+
+  public function paraGraficaPorEdad($id){
+    $query = $this->db->query("
+Select  count(*) as total,  (year(now())-year(l.fcha_nac)) as anios
+            from tbl_personal l
+            where l.id_congregacion =".$id."
+                   and l.estado in ('s','d')
+                   and l.fcha_nac is not NULL
+                   and l.fcha_nac != '0000-00-00'
+            group by year(l.fcha_nac)
+            order by (year(now())-year(l.fcha_nac))");
+    return $query->result_array();
+    }
+
+  public function paraGraficaGenero($id){
+    $query = $this->db->query("
+       Select  count(*) as value, case l.genero when 'F' then 'Femenino' when 'M' then 'Masculino' end as name
+        from tbl_personal l
+        where l.id_congregacion = ".$id." 
+      and l.estado in ('s','d')
+        group by l.genero");
+    return $query->result_array();
+    }
+
+  public function paraGraficaEtnia($id){
+    $query = $this->db->query("
+     select count(*) as value, l.etnica as name
+     from tbl_personal l
+     where l.id_congregacion = ".$id."
+     and l.estado in ('s','d')
+     group by l.etnica
+     order by l.etnica");
+    return $query->result_array();
+    }
+
 }

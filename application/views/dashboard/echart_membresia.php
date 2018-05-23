@@ -29,12 +29,17 @@
             </div>
             <div class="box-body">
               <div class="chart">
-                 <div id="main" class="col-md-12" style="min-height: 450px;"></div>
+                 <div id="main2" class="col-md-12"  style="min-height: 450px;"></div>
+              </div> 
+              <div class="chart">
+                 <div id="main3" class="col-md-12"  style="min-height: 450px;"></div>
               </div>
               <div class="chart">
-                 <div id="main1" class="col-md-12"  style="min-height: 450px;"></div>
+                 <div id="main4" class="col-md-12"  style="min-height: 450px;"></div>
               </div>
-
+              <div class="chart">
+                 <div id="main5" class="col-md-12"  style="min-height: 450px;"></div>
+              </div>
             </div>
             <!-- /.box-body -->
           </div>

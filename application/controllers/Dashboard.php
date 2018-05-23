@@ -50,10 +50,59 @@ class Dashboard extends CI_Controller {
             
             $data['congregaciones'] = $this->users_model->get_congregaciones(); 
             $data['perfiles'] = $this->users_model->get_perfiles(); 
-            $data['alta_user'] = $this->load->view('users/alta_user', $data);
     		$data['page'] = $this->load->view('dashboard/users', $data, TRUE);
             $this->load->view('dashboard/index', $data);
 	}
+	public function crear_usuario(){
+		if(!$this->session->userdata('logueado')){
+			redirect(base_url().'login');
+		}
+    		$data['users'] = $this->users_model->get_users();
+    		$id_user = $this->session->userdata('id');
+    		$data['infouser'] = $this->users_model->get_userinfo($id_user); 
+    		$data['total_congregacion'] = $this->users_model->get_total_congregacion( $data['infouser']['id_congregacion']);
+    		$data['total_congregacion_hombres'] = $this->users_model->get_total_congregacion_hombres( $data['infouser']['id_congregacion']);
+		    $data['total_congregacion_mujeres'] = $this->users_model->get_total_congregacion_mujeres( $data['infouser']['id_congregacion']);
+    		$data['cumpleaneros'] = $this->users_model->get_cumpleaneros(); 	
+    		$data['iglesias'] = $this->iglesias_model->get_iglesias();
+            $data['arreglo'] = $this->iglesias_model->get_iglesia_pastor_congregacion();
+            $data['pastores'] = $this->pastores_model->get_pastores();
+            $data['nombre_iglesia'] = $this->session->userdata('nombre_iglesia');
+            $data['porcentaje'] = $this->iglesias_model->porcentajeCrecimiento($this->session->userdata('id_congregacion'));
+            
+            $data['congregaciones'] = $this->users_model->get_congregaciones(); 
+            $data['perfiles'] = $this->users_model->get_perfiles(); 
+    		$data['page'] = $this->load->view('users/alta_user', $data, TRUE);
+            $this->load->view('dashboard/index', $data);
+	}	
+	
+	public function modificar_usuario(){
+		if(!$this->session->userdata('logueado')){
+			redirect(base_url().'login');
+		}
+    		$data['users'] = $this->users_model->get_users();
+    		$id_user = $this->session->userdata('id');
+    		$data['infouser'] = $this->users_model->get_userinfo($id_user); 
+    		$data['total_congregacion'] = $this->users_model->get_total_congregacion( $data['infouser']['id_congregacion']);
+    		$data['total_congregacion_hombres'] = $this->users_model->get_total_congregacion_hombres( $data['infouser']['id_congregacion']);
+		    $data['total_congregacion_mujeres'] = $this->users_model->get_total_congregacion_mujeres( $data['infouser']['id_congregacion']);
+    		$data['cumpleaneros'] = $this->users_model->get_cumpleaneros(); 	
+    		$data['iglesias'] = $this->iglesias_model->get_iglesias();
+            $data['arreglo'] = $this->iglesias_model->get_iglesia_pastor_congregacion();
+            $data['pastores'] = $this->pastores_model->get_pastores();
+            $data['nombre_iglesia'] = $this->session->userdata('nombre_iglesia');
+            $data['porcentaje'] = $this->iglesias_model->porcentajeCrecimiento($this->session->userdata('id_congregacion'));
+            
+            $data['congregaciones'] = $this->users_model->get_congregaciones(); 
+            $data['perfiles'] = $this->users_model->get_perfiles(); 
+            
+            $id_modificar = $this->input->post('id');
+            $data['user_modif'] = $this->users_model->get_userinfo($id_modificar); 
+    		$data['page'] = $this->load->view('users/modificar_user', $data, TRUE);
+            $this->load->view('dashboard/index', $data);
+	}		
+	
+	
 
 	public function pastores(){
 		if(!$this->session->userdata('logueado')){
@@ -125,5 +174,26 @@ class Dashboard extends CI_Controller {
 		$data['page'] = $this->load->view('dashboard/echart', $data, TRUE);
         $this->load->view('dashboard/index', $data);
 	}
+	
+	public function echart_membresia(){
+		if(!$this->session->userdata('logueado')){
+			redirect(base_url().'login');
+		}
+		$data['users'] = $this->users_model->get_users();
+		$id_user = $this->session->userdata('id');
+		$data['infouser'] = $this->users_model->get_userinfo($id_user);  
+		$data['total_congregacion'] = $this->users_model->get_total_congregacion( $data['infouser']['id_congregacion']);
+		$data['total_congregacion_hombres'] = $this->users_model->get_total_congregacion_hombres( $data['infouser']['id_congregacion']);
+		$data['total_congregacion_mujeres'] = $this->users_model->get_total_congregacion_mujeres( $data['infouser']['id_congregacion']);
+		$data['cumpleaneros'] = $this->users_model->get_cumpleaneros(); 
+		$data['nombre_iglesia'] = $this->session->userdata('nombre_iglesia');
+		$data['porcentaje'] = $this->iglesias_model->porcentajeCrecimiento($this->session->userdata('id_congregacion'));
+		$data['id_congregacion'] = $this->session->userdata('id_congregacion');
+		$data['iglesias'] = $this->iglesias_model->get_iglesias();
+        $data['arreglo'] = $this->iglesias_model->get_iglesia_pastor_congregacion();
+        $data['pastores'] = $this->pastores_model->get_pastores();
+		$data['page'] = $this->load->view('dashboard/echart_membresia', $data, TRUE);
+        $this->load->view('dashboard/index', $data);
+	}	
 	
 }

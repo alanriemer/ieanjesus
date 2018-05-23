@@ -20,6 +20,7 @@
   
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+   <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/dist/css/chosen.css">
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>vendor/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -353,7 +354,7 @@
         </div>
         <div class="pull-left info">
           <p><?php echo strtoupper($infouser['nombre_completo'])  ; ?></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> En línea</a>
         </div>
       </div>
       <!-- search form -->
@@ -386,7 +387,7 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
-            <span>Layout Options</span>
+            <span>Opciones de diseño</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
@@ -550,7 +551,7 @@
     <section class="content-header">
       <h1>
         Dashboard
-        <small>Control panel</small>
+        <small>Panel control</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -579,7 +580,7 @@
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url();?>dashboard/echart_membresia" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -660,7 +661,7 @@
     <div class="tab-content">
       <!-- Home tab content -->
       <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
+        <h3 class="control-sidebar-heading">Actividad reciente</h3>
         <ul class="control-sidebar-menu">
           <li>
             <a >
@@ -686,9 +687,9 @@
               <i class="menu-icon fa fa-user bg-yellow"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                <h4 class="control-sidebar-subheading"><?php echo $infouser['nombre_completo'] ; ?> actualizó su perfil</h4>
 
-                <p>New phone +1(800)555-1234</p>
+                <p>Nuevo teléfono +1(800)555-1234</p>
               </div>
             </a>
           </li>
@@ -697,7 +698,7 @@
               <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                <h4 class="control-sidebar-subheading">Nora fue agregada a la lista de mails</h4>
 
                 <p>nora@example.com</p>
               </div>
@@ -708,7 +709,7 @@
               <i class="menu-icon fa fa-file-code-o bg-green"></i>
 
               <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                <h4 class="control-sidebar-subheading">Se ejecutaron 254 tareas</h4>
 
                 <p>Execution time 5 seconds</p>
               </div>
@@ -717,12 +718,12 @@
         </ul>
         <!-- /.control-sidebar-menu -->
 
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
+        <h3 class="control-sidebar-heading">Barra de progreso</h3>
         <ul class="control-sidebar-menu">
           <li>
             <a href="javascript:void(0)">
               <h4 class="control-sidebar-subheading">
-                Custom Template Design
+                Diseño personalizable
                 <span class="label label-danger pull-right">70%</span>
               </h4>
 
@@ -734,7 +735,7 @@
           <li>
             <a href="javascript:void(0)">
               <h4 class="control-sidebar-subheading">
-                Update Resume
+                Actualizar resumen
                 <span class="label label-success pull-right">95%</span>
               </h4>
 
@@ -746,7 +747,7 @@
           <li>
             <a href="javascript:void(0)">
               <h4 class="control-sidebar-subheading">
-                Laravel Integration
+                Integración Laravel 
                 <span class="label label-warning pull-right">50%</span>
               </h4>
 
@@ -773,21 +774,21 @@
       </div>
       <!-- /.tab-pane -->
       <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+      <div class="tab-pane" id="control-sidebar-stats-tab">Tabla contenido estadístico</div>
       <!-- /.tab-pane -->
       <!-- Settings tab content -->
       <div class="tab-pane" id="control-sidebar-settings-tab">
         <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
+          <h3 class="control-sidebar-heading">Configuración general</h3>
 
           <div class="form-group">
             <label class="control-sidebar-subheading">
-              Report panel usage
+              Panel de reporte
               <input type="checkbox" class="pull-right" checked>
             </label>
 
             <p>
-              Some information about this general settings option
+              Alguna información de configuración de opciones.
             </p>
           </div>
           <!-- /.form-group -->
@@ -799,19 +800,19 @@
             </label>
 
             <p>
-              Other sets of options are available
+             Otras opciones disponibles
             </p>
           </div>
           <!-- /.form-group -->
 
           <div class="form-group">
             <label class="control-sidebar-subheading">
-              Expose author name in posts
+             Exposición nombre de autor en post
               <input type="checkbox" class="pull-right" checked>
             </label>
 
             <p>
-              Allow the user to show his name in blog posts
+             Permitir al usuario mostrar su nombre en post
             </p>
           </div>
           <!-- /.form-group -->
@@ -820,7 +821,7 @@
 
           <div class="form-group">
             <label class="control-sidebar-subheading">
-              Show me as online
+              Mostrarme en línea
               <input type="checkbox" class="pull-right" checked>
             </label>
           </div>
@@ -828,7 +829,7 @@
 
           <div class="form-group">
             <label class="control-sidebar-subheading">
-              Turn off notifications
+              Desactivar notificaciones
               <input type="checkbox" class="pull-right">
             </label>
           </div>
@@ -836,7 +837,7 @@
 
           <div class="form-group">
             <label class="control-sidebar-subheading">
-              Delete chat history
+              Eliminar historial del chat
               <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
             </label>
           </div>
@@ -853,7 +854,10 @@
 </div>
 <!-- ./wrapper -->
 
-
+  <script src="<?php echo base_url(); ?>vendor/dist/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>vendor/dist/js//chosen.jquery.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>vendor/dist/js//prism.js" type="text/javascript" charset="utf-8"></script>
+  <script src="<?php echo base_url(); ?>vendor/dist/js/init.js" type="text/javascript" charset="utf-8"></script>
 <!-- jQuery 3 -->
 <script src="<?php echo base_url(); ?>vendor/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -868,6 +872,8 @@
 <script src="<?php echo base_url(); ?>vendor/bower_components/raphael/raphael.min.js"></script>
 <script src="<?php echo base_url(); ?>vendor/bower_components/morris.js/morris.min.js"></script>
 <!-- Sparkline -->
+
+
 <!-- Sparkline -->
 
 <script src="<?php echo base_url(); ?>vendor/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
@@ -958,7 +964,6 @@ function initMap(){
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL2EQGNcyxUPgYgV4y9wxinlZuz7zL2Ms&callback=initMap" async defer></script>
-
 <script>
 
 
@@ -1042,8 +1047,8 @@ var appMap = new Vue({
     }
   });
 </script>
-
 <script language="JavaScript"  type="text/javascript">
+
 $(document).ready(function (){
     var table = $('#users').DataTable({
         language: {
@@ -1074,27 +1079,58 @@ $(document).ready(function (){
         columnDefs: [ {
         "targets": 0,
         "data": null,
-        "defaultContent": "<button type='button' class='btn btn-primary btn-flat btn-xs'><span class='fa fa-eye'></span></button><button type='button' class='btn btn-primary btn-flat btn-xs'> <span class='fa fa-edit'></span> </button><button type='button' id='deleteUser' class='btn btn-primary btn-flat btn-xs'> <span class='fa fa-trash-o'></span></button>"
+        "defaultContent": "<button type='button' id='edituser' class='btn btn-warning btn-flat btn-md'> <span class='fa fa-edit'></span> </button><button type='button'  id='deleteuser' class='btn btn-danger btn-flat btn-md'> <span class='fa fa-trash-o'></span></button>"
     } ],
         order: [ 1, 'asc' ],
         lengthMenu: [ 5,10, 25, 50, 75, 100 ],
         pageLength: 5
  
     });
-    
-    $('#users tbody').on( 'click', 'button', function () {
-    var data = table.row( $(this).parents('tr') ).data();
-    var r = confirm("¿Está seguro que desea borrar el usuario?");
-    if (r == true) {
-        document.body.innerHTML += '<form id="deleteUser" action="/api/eliminar_usuario" method="post"><input type="hidden" name="id" value="'+data[1]+'"></form>';
-        document.getElementById("deleteUser").submit();
-        txt = "Usuario Eliminado";
-    } else {
-    }
-    
+
+ $('#users tbody').on( 'click', '#edituser',
+ 
+        function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        post('/dashboard/modificar_usuario/', {id: data[ 1 ]});
+
+    } );
+ $('#users tbody').on( 'click', '#deleteuser',
+ 
+        function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        var txt;
+        if (confirm("¿Seguro desea eliminar a "+data[2]+ "?")) {
+             window.location.replace("/api/eliminar_usuario/"+data[ 1 ]);
+        } else {
+           
+        }
+        
     } );
     
-   
+    
+   function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
 
 });
 </script>
@@ -1170,7 +1206,6 @@ $(document).ready(function (){
 
   })
 </script>
-
 <script  language="JavaScript"  type="text/javascript" >
 
 $(function() {
@@ -1212,14 +1247,17 @@ $(function() {
 
 </script>
 <script src="/vendor/dist/ckeditor/ckeditor.js"></script>
-	<script src="/vendor/dist/ckfinder/ckfinder.js"></script>
-	
+<script src="/vendor/dist/ckfinder/ckfinder.js"></script>
 
-<script type="text/javascript">
-$('#cuerpoo').ckeditor(function(){ 
-          CKFinder.setupCKEditor( this, '/vendor/dist/ckfinder/' ); 
+<script src="<?php echo base_url(); ?>vendor/echarts/dist/echarts-en.js"></script>
+
+<script>
+    $('p[data-toggle="tooltip"]').tooltip({
+    animated: 'fade',
+    placement: 'left',
+    html: true
 });
-</script>
+    </script>
         <script src="<?php echo base_url(); ?>vendor/echarts/dist/echarts-en.js"></script>
 
 
@@ -1285,73 +1323,199 @@ $.get( base + "ajax/ajaxGetTotalMiembros", { id_congregacion: $('#idc').val() },
 }, "json" );
 
 
+// $.get( base + "ajax/ajaxGetTotalMiembros", { id_congregacion: $('#idc').val() }, function(data ) {
+//   var myChart = echarts.init(document.getElementById('main1'));
+//   var categorias = new Array();
+//   var serie = new Array();
+//   $.each(data, function(i, item) {
+//     //console.log(item.fcha_bautizo);
+//     //console.log(item.total);
+//     categorias.push(item.fcha_bautizo);
+//     serie.push(item.total);
+//   });
+//    console.log('La longitud: '+ serie.length);
+//    var porcentaje = new Array();
+//   for (var i=0; i < serie.length; i++){
+//     console.log(serie[i]);
+//     porcentaje.push(((serie[i])/serie[i-1]).toFixed(1));
+//   }
+//   for (var i=0; i < porcentaje.length; i++){
+//     console.log(porcentaje[i]);
+//   }
 
 
-
-
-// for (var i = 0; i < data.iglesias.length; i++) {
-            
-//             loc[i]= [data.iglesias[i]['direccion'], parseFloat(data.iglesias[i]['latitud']), parseFloat(data.iglesias[i]['longitud']), i+1 ];
-//             marker = new google.maps.Marker({
-//               position: new google.maps.LatLng(parseFloat(data.iglesias[i]['latitud']), parseFloat(data.iglesias[i]['longitud'])),
-//               map: map
-//             });
-
-//             google.maps.event.addListener(marker, 'click', (function(marker, i) {
-//               return function() {
-//                 infowindow.setContent("<b>"+data.iglesias[i]['congregacion']+"</b><br><small>"+data.iglesias[i]['direccion']+"</small>");
-//                 infowindow.open(map, marker);
+//   option = {
+//     title: {
+//         text: $('#nombreIglesia').val(),
+//         subtext: 'Crecimiento de miembros de la iglesia - Expresado en Porcentaje',
+//         x:'center'
+//     },
+//     backgroundColor: '#eee',
+//     legend: {
+//         data: categorias,
+//         align: 'left',
+//         left: 10
+//     },
+//     // toolbox: {
+//     //     show: true,
+//     //     feature: {
+//     //         dataView: {readOnly: false},
+//     //         restore: {},
+//     //         saveAsImage: {}
+//     //     }
+//     // },
+//     tooltip: {},
+//     xAxis: {
+//         type: 'category',
+//         //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+//         data: categorias
+//     },
+//     yAxis: {
+//         type: 'value'
+//     },
+//     series: [{
+//         //data: [120, 200, 150, 80, 70, 110, 130],
+//         label: {
+//                 normal: {
+//                     show: true,
+//                     position: 'inside'
 //               }
-//             })(marker, i));
-//           }
+//             },
+//         data: porcentaje,
+//         type: 'bar'
+//     }]
+// };
+
+//         // use configuration item and data specified to show chart
+//         myChart.setOption(option);
+
+// }, "json" );
 
 
 
-$.get( base + "ajax/ajaxGetTotalMiembros", { id_congregacion: $('#idc').val() }, function(data ) {
-  var myChart = echarts.init(document.getElementById('main1'));
+$.get( base + "ajax/paraGraficaTotalMiembrosPorcentaje", { id_congregacion: $('#idc').val() }, function(data ) {
+
   var categorias = new Array();
   var serie = new Array();
   $.each(data, function(i, item) {
-    //console.log(item.fcha_bautizo);
-    //console.log(item.total);
-    categorias.push(item.fcha_bautizo);
-    serie.push(item.total);
+    categorias.push(item.name);
+    serie.push(item.value);
   });
-   console.log('La longitud: '+ serie.length);
+   //console.log('La longitud: '+ serie.length);
    var porcentaje = new Array();
   for (var i=0; i < serie.length; i++){
-    console.log(serie[i]);
+    //console.log(serie[i]);
     porcentaje.push(((serie[i])/serie[i-1]).toFixed(1));
-    // if (i==1){
-    //   porcentaje.push(0);
-    // }else{
-    //   porcentaje.push(((serie[i]*100)/serie[i-1]).toFixed(2));  
-    // }
-
-  }
-  for (var i=0; i < porcentaje.length; i++){
-    console.log(porcentaje[i]);
   }
 
 
+  var jsonArray = JSON.parse(JSON.stringify(categorias));
   option = {
+    
     title: {
         text: $('#nombreIglesia').val(),
-        subtext: 'Crecimiento de miembros de la iglesia - Expresado en Porcentaje',
+        subtext: 'Cantidad de miembros nuevos por año en porcentaje',
         x:'center'
     },
     backgroundColor: '#eee',
-    legend: {
-        data: categorias,
-        align: 'left',
-        left: 10
+    tooltip: {},
+    xAxis: {
+        type: 'category',
+        data: categorias
     },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        label: {
+                normal: {
+                    show: true,
+                    position: 'inside'
+                }
+            },
+        data: porcentaje,
+        type: 'line'
+    }]
+};
+var myChart = echarts.init(document.getElementById('main1'));
+myChart.setOption(option);
+
+}, "json" );
+
+
+$.get( base + "ajax/paraGraficaNacionalidad", { id_congregacion: $('#idc').val() }, function(data ) {
+  var myChart = echarts.init(document.getElementById('main2'));
+  var categorias = new Array();
+  $.each(data, function(i, item) {
+    categorias.push(item.value);
+  });
+option = {
+    title : {
+        text: $('#nombreIglesia').val(),
+        subtext: 'Miembros por Nacionalidad',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: categorias
+    },
+    series : [
+        {
+            name: 'Nacionalidad',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:data,           
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+        myChart.setOption(option);
+
+}, "json" );
+        //Practica
+
+
+$.get( base + "ajax/paraGraficaPorEdad", { id_congregacion: $('#idc').val() }, function(data) {
+  var myChart = echarts.init(document.getElementById('main3'));
+  var categorias = new Array();
+  var serie = new Array();
+  console.log(data);
+  $.each(data, function(i, item) {
+    categorias.push(item.anios);
+    serie.push(item.total);
+  });
+  console.log(categorias);
+  option = {
+    title: {
+        text: $('#nombreIglesia').val(),
+        subtext: 'Cantidad de miembros por Edad',
+        x:'center'
+    },
+    backgroundColor: '#eee',
+    // legend: {
+    //     data: categorias,
+    //     align: 'left',
+    //     left: 10
+    // },
     // toolbox: {
-    //     show: true,
     //     feature: {
-    //         dataView: {readOnly: false},
-    //         restore: {},
-    //         saveAsImage: {}
+    //         magicType: {
+    //             type: ['stack', 'tiled']
+    //         },
+    //         dataView: {}
     //     }
     // },
     tooltip: {},
@@ -1369,9 +1533,9 @@ $.get( base + "ajax/ajaxGetTotalMiembros", { id_congregacion: $('#idc').val() },
                 normal: {
                     show: true,
                     position: 'inside'
-              }
+                }
             },
-        data: porcentaje,
+        data: serie,
         type: 'bar'
     }]
 };
@@ -1382,23 +1546,95 @@ $.get( base + "ajax/ajaxGetTotalMiembros", { id_congregacion: $('#idc').val() },
 }, "json" );
 
 
-        //Practica
-        
-    </script>
-<script>
-    $('p[data-toggle="tooltip"]').tooltip({
-    animated: 'fade',
-    placement: 'left',
-    html: true
-});
-    </script>
-<script>    
-$('#id_congregacion').selectize({
-    create: true,
-    sortField: 'text'
-});    
-</script>    
-    
+
+$.get( base + "ajax/paraGraficaGenero", { id_congregacion: $('#idc').val() }, function(data ) {
+  var myChart = echarts.init(document.getElementById('main4'));
+  var categorias = new Array();
+  $.each(data, function(i, item) {
+    categorias.push(item.value);
+  });
+option = {
+    title : {
+        text: $('#nombreIglesia').val(),
+        subtext: 'Cantidad de Miembros por Genero',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: categorias
+    },
+    series : [
+        {
+            name: 'Genero',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:data,           
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+        myChart.setOption(option);
+
+}, "json" );
+
+
+$.get( base + "ajax/paraGraficaEtnia", { id_congregacion: $('#idc').val() }, function(data ) {
+  var myChart = echarts.init(document.getElementById('main5'));
+  var categorias = new Array();
+  $.each(data, function(i, item) {
+    categorias.push(item.value);
+  });
+option = {
+    title : {
+        text: $('#nombreIglesia').val(),
+        subtext: 'Cantidad de Miembros por Etnia',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: categorias
+    },
+    series : [
+        {
+            name: 'Etnia',
+            type: 'pie',
+            radius : '55%',
+            center: ['50%', '60%'],
+            data:data,           
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+        myChart.setOption(option);
+
+}, "json" );
+    </script>    
+
     
 </body>
 </html>

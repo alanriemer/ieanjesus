@@ -65,7 +65,7 @@ class Users_model extends CI_Model{
     
     
     public function get_userinfo($id){
-	    $this->db->select('A.nombre, A.apellido, A.nombre_completo ,A.foto_usuario,  A.correo, B.nombre_iglesia, D.nombre as nombre_perfil, A.id_congregacion as id_congregacion');
+	    $this->db->select('A.id, A.nombre, A.apellido, A.id_perfil, A.nombre_completo, A.usuario ,A.foto_usuario,  A.correo, B.nombre_iglesia, D.nombre as nombre_perfil, A.id_congregacion as id_congregacion');
 	    $this->db->from('tbl_usuario AS A');
         $this->db->join('tbl_iglesia AS C', 'A.id_congregacion = C.id_congregacion', 'LEFT');
         $this->db->join('tbl_congregacionales AS B', 'B.id = C.id_congregacion', 'INNER');
@@ -76,13 +76,16 @@ class Users_model extends CI_Model{
 	    foreach ($query->result() as $row){
 	        $foto_pastor = explode("/", $row->foto_usuario);
             $foto_pastor = ($foto_pastor[3] != '') ? $foto_pastor[3] : "user2-160x160.jpg";
+        	$results['id'] = $row->id;	
         	$results['nombre'] = $row->nombre;
        		$results['apellido'] = $row->apellido;
+       		$results['usuario'] = $row->usuario;
 			$results['nombre_completo'] = $row->nombre_completo;
 			$results['foto'] = $foto_pastor;
 			$results['nombre_iglesia'] = $row->nombre_iglesia;
 			$results['id_congregacion'] = $row->id_congregacion;
 			$results['nombre_perfil'] = $row->nombre_perfil;
+			$results['id_perfil'] = $row->id_perfil;
 			$results['correo'] = $row->correo;
     	    }
 	   
@@ -97,6 +100,11 @@ class Users_model extends CI_Model{
     
         public function alta_usuario($insert){
             return $this->db->insert('tbl_usuario', $insert);
+        }
+        public function modificar_usuario($insert){
+            extract($insert);
+            $this->db->where('id', $id);
+            return $this->db->update('tbl_usuario', $insert);
         }
         public function eliminar_usuario($id){
             $this->db->where('id', $id);

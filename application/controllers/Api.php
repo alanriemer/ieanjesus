@@ -8,7 +8,23 @@ class Api extends CI_Controller {
         $this->load->model('users_model');
         $this->load->model('pastores_model');
     }
-
+    public function get_congregaciones(){
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+        
+        $congregaciones = $this->users_model->get_congregaciones(); 
+        $data = array();
+        foreach($congregaciones as $r) {
+        
+           $data[] = array(
+                $r->id,
+                $r->nombre_iglesia
+           );
+        }
+         echo json_encode($data);
+        exit();
+    }
 
     public function get_users(){
     	if(!$this->session->userdata('logueado')){
@@ -146,7 +162,7 @@ class Api extends CI_Controller {
 	}
 	
 	
-    public function alta_usuario(){
+    public function crear_usuario(){
         if(!$this->session->userdata('logueado')){
     		redirect(base_url().'login');	
     	}    
@@ -162,19 +178,43 @@ class Api extends CI_Controller {
             'correo' =>$this->input->post('correo'),
             'nombre_completo' => $this->input->post('nombres'). $this->input->post('apellidos'),
             'foto_usuario' =>  $this->input->post('foto'),
-            'estado' => $this->input->post('estado')
+            'estado' => $this->input->post('estado'),
+            'junta' => $this->input->post('junta')
             );
 		$this->users_model->alta_usuario($insert);
 		redirect(base_url().'dashboard/users');
 	}	
 	
-    public function eliminar_usuario(){
+    public function eliminar_usuario( $id_user){
         if(!$this->session->userdata('logueado')){
     		redirect(base_url().'login');	
     	}    
-		$id_usuario = $this->input->post('id');
-		$this->users_model->eliminar_usuario($id_usuario);
+		$this->users_model->eliminar_usuario($id_user);
 		redirect(base_url().'dashboard/users');
-	}	
+	}
+	
+    public function modificar_usuario(){
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+    	
+	    $update = array(
+	        'id' => $this->input->post('id_user'),
+	        'id_congregacion' =>$this->input->post('congregacion'),
+            'nombre'=> $this->input->post('nombres'),
+            'apellido' => $this->input->post('apellidos'),
+            'usuario' => $this->input->post('usuario'),
+            'id_perfil' =>$this->input->post('perfil'),
+            'correo' =>$this->input->post('correo'),
+            'nombre_completo' => $this->input->post('nombres'). $this->input->post('apellidos'),
+            'estado' => $this->input->post('estado'),
+            'junta' => $this->input->post('junta')
+            );
+        if ($this->input->post('password') != ''){
+            $update['passsword'] = $this->input->post('password');
+    	}
+		$this->users_model->modificar_usuario($update);
+		redirect(base_url().'dashboard/users');
+	}
 		
 }
