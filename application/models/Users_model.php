@@ -15,9 +15,18 @@ class Users_model extends CI_Model{
         return $this->db->get();
       
     }
+    public function get_congregaciones_datatable(){
+        $this->db->select('id, nombre_iglesia, estado');
+        $this->db->from('tbl_congregacionales');
+        return $this->db->get();
+    }   
+
+    public function alta_congregacion($insert){
+        return $this->db->insert('tbl_congregacionales', $insert);
+    }
     
     public function get_congregaciones(){
-        $this->db->select('id, nombre_iglesia');
+        $this->db->select('id, nombre_iglesia, estado');
         $this->db->from('tbl_congregacionales');
         $this->db->where('estado', 's');
         $query = $this->db->get();
@@ -65,7 +74,7 @@ class Users_model extends CI_Model{
     
     
     public function get_userinfo($id){
-	    $this->db->select('A.id, A.nombre, A.apellido, A.id_perfil, A.nombre_completo, A.usuario ,A.foto_usuario,  A.correo, B.nombre_iglesia, D.nombre as nombre_perfil, A.id_congregacion as id_congregacion');
+	    $this->db->select('A.id, A.nombre, A.apellido, A.id_perfil, A.junta, A.nombre_completo, A.usuario ,A.foto_usuario,  A.correo, B.nombre_iglesia, D.nombre as nombre_perfil, A.id_congregacion as id_congregacion');
 	    $this->db->from('tbl_usuario AS A');
         $this->db->join('tbl_iglesia AS C', 'A.id_congregacion = C.id_congregacion', 'LEFT');
         $this->db->join('tbl_congregacionales AS B', 'B.id = C.id_congregacion', 'INNER');
@@ -87,6 +96,7 @@ class Users_model extends CI_Model{
 			$results['nombre_perfil'] = $row->nombre_perfil;
 			$results['id_perfil'] = $row->id_perfil;
 			$results['correo'] = $row->correo;
+			$results['junta'] = $row->junta;
     	    }
 	   
     	   return $results;

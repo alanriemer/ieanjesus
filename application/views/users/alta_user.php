@@ -102,7 +102,7 @@
                 				</div>
             			  </div>
             			  <div class="form-group">
-                				<button type="button" class="btn btn-default  btn-sm btn-flat" data-dismiss="modal">Cerrar</button>
+                				<button type="button" class="btn btn-default  btn-sm btn-flat" onclick="window.location='/dashboard/users'">Cerrar</button>
             <button type="submit" class="btn btn-warning  btn-sm btn-flat" id="guardar_oficios">Guardar</button>
             			  </div>
             	</div>

@@ -12,7 +12,7 @@
 			<div class="panel-body">		
         		 <div class="tab-content">
             				<input type="hidden" class="form-control" id="foto" name="foto" value="/archivos_ieanjesus/foto_pastor/" readonly>
-                    	    <input type="hidden"   class="form-control" id="id_user" name="id_user" value="<?php echo strtoupper($user_modif['id'])  ; ?>" readonly disable" >
+                    	    <input type="hidden"   class="form-control" id="id_user" name="id_user" value="<?php echo strtoupper($user_modif['id'])  ; ?>" readonly disable >
                     	    
                     
                     	    <div class="form-group">
@@ -61,10 +61,10 @@
                 				<label for="junta_administrativa" class="col-sm-3 control-label">Junta Administrativa</label>
                 				<div class="col-sm-8">
                 				    <label class="radio-inline">
-                			            <input type="radio" name="junta" value="1" > Sí<br>
+                			            <input type="radio" name="junta" <?php  echo $junta = ($user_modif['junta'] == 1)? 'checked="checked"': '' ; ?> value="1" > Sí<br>
                 			        </label>
                 			        <label class="radio-inline">
-                                        <input type="radio" name="junta" value="0" checked> No<br>
+                                        <input type="radio" name="junta" <?php  echo $junta = ($user_modif['junta'] == '' or $user_modif['junta'] == 0 )? 'checked="checked"': '' ; ?> value="0" >No<br>
                                     </label>
                 				</div>
             			  </div>
@@ -90,7 +90,7 @@
             			   <script language='javascript' type='text/javascript'>
                             function check(input) {
                                 if (input.value != document.getElementById('password').value) {
-                                    input.setCustomValidity('Las contraseñas deben sere iguales.');
+                                    input.setCustomValidity('Las contraseñas deben ser iguales.');
                                 } else {
                                     // input is valid -- reset the error message
                                     input.setCustomValidity('');
@@ -107,7 +107,7 @@
                 				</div>
             			  </div>
             			  <div class="form-group">
-                				<button type="button" class="btn btn-default  btn-sm btn-flat" data-dismiss="modal">Cerrar</button>
+                				<button type="button" class="btn btn-default  btn-sm btn-flat" onclick="window.location='/dashboard/users'">Cerrar</button>
                                 <button type="submit" class="btn btn-warning  btn-sm btn-flat" id="guardar_oficios">Guardar</button>
             			  </div>
             	</div>

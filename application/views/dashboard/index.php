@@ -306,7 +306,7 @@
                 <p>
                   <?php echo strtoupper($infouser['nombre_completo'])  ; ?>
                   <small>Miembro de <?php  echo $infouser['nombre_iglesia'] ; ?></small>
-                  <small><b><?php  echo $infouser['nombre_perfil'] ; ?></b></small>
+                  <small><b><?php  echo $infouser['nombre_perfil'] ; ?></b> <b> <?php  echo $junta = ($infouser['junta'] == 1)? '- Junta Administrativa': '' ; ?></b></small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -373,17 +373,29 @@
         <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-dashboard"></i> <span>Administración</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-circle-o"></i> Administración</a></li>
-            <li><a href="<?php echo base_url(); ?>dashboard"><i class="fa fa-circle-o"></i> Iglesia local </a></li>
+                <li><a href="<?php echo base_url();?>dashboard/users"><i class="fa fa-users"></i> <span>Usuarios</span></a></li>
+                <li><a href="<?php echo base_url();?>dashboard/pastores"><i class="fa fa-users"></i> <span>Pastores</span></a></li>
+                <li><a href="<?php echo base_url();?>dashboard/congregaciones"><i class="fa fa-university"></i> <span>Congregaciones</span></a></li>
+                <li><a href="<?php echo base_url();?>dashboard/actas"><i class="fa fa-book"></i> <span>Actas</span></a></li>
           </ul>
         </li>
-        <li><a href="<?php echo base_url();?>dashboard/actas"><i class="fa fa-book"></i> <span>Actas</span></a></li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Iglesia local</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          </ul>
+        </li>
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
@@ -1058,7 +1070,7 @@ $(document).ready(function (){
             "lengthMenu":     "Muestra _MENU_ registros.",
             "loadingRecords": "Cargando...",
             "processing":     "Procesando...",
-            "search":         "Buscar:",
+            "search":         "Buscar: ",
             "paginate": {
                 "first":      "Primero",
                 "last":       "Ultimo",
@@ -1144,7 +1156,7 @@ $(document).ready(function (){
             "lengthMenu":     "Muestra _MENU_ registros.",
             "loadingRecords": "Cargando...",
             "processing":     "Procesando...",
-            "search":         "Buscar:",
+            "search":         "Buscar: ",
             "paginate": {
                 "first":      "Primero",
                 "last":       "Ultimo",
@@ -1183,6 +1195,46 @@ $(document).ready(function (){
 
 });
 </script>
+<script language="JavaScript"  type="text/javascript">
+$(document).ready(function (){
+    var table = $('#congregaciones').DataTable({
+        language: {
+            "emptyTable":     "No hay datos disponibles en esta tabla.",
+            "info":           "Mostrando _START_ a _END_ de un total de _TOTAL_ registros.",
+            "infoEmpty":      "Mostrando 0 a 0 de 0 registros.",
+            "lengthMenu":     "Muestra _MENU_ registros.",
+            "loadingRecords": "Cargando...",
+            "processing":     "Procesando...",
+            "search":         "Buscar: ",
+            "paginate": {
+                "first":      "Primero",
+                "last":       "Ultimo",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            }
+            
+        },
+        ajax: {
+            url:"http://test.ieanjesusoficial.org/api/get_congregaciones_datatable",
+            type:"GET"},
+        deferRender: true,
+        responsive: {
+            details: {
+                type: 'column'
+            }
+        },
+         columnDefs: [ {
+        "targets": 0,
+        "data": null,
+        "defaultContent": "<button type='button' id='editcongregacion' class='btn btn-warning btn-flat btn-xs'> <span class='fa fa-edit'></span> </button><button type='button'  id='deletecongregacion' class='btn btn-danger btn-flat btn-xs'> <span class='fa fa-trash-o'></span></button>"
+    } ],
+        order: [ 1, 'asc' ],
+        lengthMenu: [ 5,10, 25, 50, 75, 100 ],
+        pageLength: 5
+    });
+
+});
+</script>
 <script>
   $(function () {
     $('#actas').DataTable({
@@ -1193,7 +1245,7 @@ $(document).ready(function (){
             "lengthMenu":     "Muestra _MENU_ registros.",
             "loadingRecords": "Cargando...",
             "processing":     "Procesando...",
-            "search":         "Buscar:",
+            "search":         "Buscar: ",
             "paginate": {
                 "first":      "Primero",
                 "last":       "Ultimo",

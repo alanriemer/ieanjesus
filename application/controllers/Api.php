@@ -19,7 +19,8 @@ class Api extends CI_Controller {
         
            $data[] = array(
                 $r->id,
-                $r->nombre_iglesia
+                $r->nombre_iglesia,
+                $r->estado
            );
         }
          echo json_encode($data);
@@ -63,6 +64,35 @@ class Api extends CI_Controller {
           echo json_encode($output);
           exit();
             
+    }
+    public function get_congregaciones_datatable(){
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+            // Datatables Variables
+        $draw = intval($this->input->get("draw"));
+        $start = intval($this->input->get("start"));
+        $length = intval($this->input->get("length"));
+        
+        $congregaciones = $this->users_model->get_congregaciones_datatable(); 
+        $data = array();
+        foreach($congregaciones->result() as $r) {
+           $estado = ($r->estado == 's')? '<span class="label pull-center bg-success" style="background-color: #00a65a;" >Activo</span>':'<span class="label pull-center bg-success" style="background-color: #dd4b39;">Inactivo</span>';
+           $data[] = array(
+                '',
+                $r->id,
+                $r->nombre_iglesia,
+                $estado
+           );
+        }
+         $output = array(
+                 "draw" => $draw,
+                 "recordsTotal" => $congregaciones->num_rows(),
+                 "recordsFiltered" => $congregaciones->num_rows(),
+                 "data" => $data
+            );
+         echo json_encode($output);
+        exit();
     }
     
     public function get_pastores(){
@@ -160,7 +190,20 @@ class Api extends CI_Controller {
 		$this->actas_model->alta_acta($insert);
 		redirect(base_url().'dashboard/actas');
 	}
-	
+
+    public function alta_congregacion(){
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}    
+        $nombre_iglesia = 'IEANJESUS '. $this->input->post('nombre_iglesia');
+	    $insert = array(
+            'nombre_iglesia' =>strtoupper($nombre_iglesia),
+            'estado' => $this->input->post('estado')
+            );
+            
+		$this->users_model->alta_congregacion($insert);
+		redirect(base_url().'dashboard/congregaciones');
+	}	
 	
     public function crear_usuario(){
         if(!$this->session->userdata('logueado')){

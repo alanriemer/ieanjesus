@@ -6,7 +6,7 @@
     			<i class='fa fa-users'></i><h3 class="box-title">Listado de pastores</h3>
     			
     			<div class="box-tools pull-right">	
-    		        <a data-toggle="modal" data-target="#nuevaActa"class="btn btn-danger btn-sm btn-flat" role="button"><span class="glyphicon glyphicon-plus" ></span>Nuevo pastor</a>
+    		        <a href="<?php echo base_url();?>dashboard/crear_pastor" class="btn btn-danger btn-sm btn-flat" role="button"><span class="glyphicon glyphicon-plus" ></span>Nuevo pastor</a>
     		    </div>	
     		</div>
 
