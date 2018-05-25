@@ -685,7 +685,8 @@
 			foreach ($cumpleaneros as $row) 
 			{ 
 			    $foto_pastor = explode("/", $row->foto_pastor);
-			    $img = "<img src='".base_url()."uploads/foto_pastor/".$foto_pastor[3]."' width='90px;'/>";
+			    $foto_pastor_parse = end($foto_pastor);
+			    $img = "<img src='".base_url()."uploads/foto_pastor/".$foto_pastor_parse."' width='90px;'/>";
 				echo '<p data-toggle="tooltip" title="'.$img.'">' .$row->nombres_completos . '</p>';
 			
 			
@@ -1091,7 +1092,7 @@ $(document).ready(function (){
         columnDefs: [ {
         "targets": 0,
         "data": null,
-        "defaultContent": "<button type='button' id='edituser' class='btn btn-warning btn-flat btn-md'> <span class='fa fa-edit'></span> </button><button type='button'  id='deleteuser' class='btn btn-danger btn-flat btn-md'> <span class='fa fa-trash-o'></span></button>"
+        "defaultContent": "<button type='button' id='edituser' class='btn btn-warning btn-flat btn-xs'> <span class='fa fa-edit'></span> </button><button type='button'  id='deleteuser' class='btn btn-danger btn-flat btn-xs'> <span class='fa fa-trash-o'></span></button>"
     } ],
         order: [ 1, 'asc' ],
         lengthMenu: [ 5,10, 25, 50, 75, 100 ],
@@ -1174,18 +1175,11 @@ $(document).ready(function (){
                 type: 'column'
             }
         },
-        "columns": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            {
-              "data": "first_name", // can be null or undefined
-              "defaultContent": '<div class="dropdown"><button class="btn btn-info btn-sm btn-flat dropdown-toggle" type="button" data-toggle="dropdown">Opciones<span class="caret"></span></button><ul class="dropdown-menu">     <li><a href="#" title="Enviar Acta"><i class="fa fa-paper-plane"></i> Enviar Acta</a></li> <li><a href="#" title="Modificar usuario"><i class="glyphicon glyphicon-cloud-upload"></i> Eliminar usuario</a> </li><li><a href="#" title="Asignar permisos"><i class="fa fa-file"></i> Visualizar Digital</a></li> <li><a href="#" title="Ver usuario"><i class="fa fa-eye"></i> Ver Acta</a></li> </ul></div>'
-            }
+        columnDefs: [ {
+        "targets": 0,
+        "data": null,
+        "defaultContent": '<div class="dropdown"><button class="btn btn-warning btn-sm btn-flat dropdown-toggle" type="button" data-toggle="dropdown">Opciones<span class="caret"></span></button><ul class="dropdown-menu">     <li><a href="#" title="Pastor"><i class="fa fa-paper-plane"></i> Pastor</a></li> <li><a href="#" title="Pastor"><i class="glyphicon glyphicon-cloud-upload"></i>  Pastor</a> </li><li><a href="#" title="Pastor"><i class="fa fa-file"></i> Pastor</a></li> <li><a href="#" title="Pastor"><i class="fa fa-eye"></i>Pastor</a></li> </ul></div>'
+        }
             
           ],
         order: [ 1, 'asc' ],
@@ -1457,7 +1451,7 @@ $.get( base + "ajax/paraGraficaTotalMiembrosPorcentaje", { id_congregacion: $('#
    var porcentaje = new Array();
   for (var i=0; i < serie.length; i++){
     //console.log(serie[i]);
-    porcentaje.push(((serie[i])/serie[i-1]).toFixed(1));
+    porcentaje.push(((serie[i])/serie[i-1]).toFixed(2));
   }
 
 

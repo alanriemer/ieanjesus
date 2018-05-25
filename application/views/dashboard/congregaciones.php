@@ -68,7 +68,7 @@
 		  <div class="modal-footer">
 		
 			<button type="button" class="btn btn-default  btn-sm btn-flat" data-dismiss="modal">Cerrar</button>
-			<button type="submit" class="btn btn-success  btn-sm btn-flat" id="guardar_oficios">Guardar acta</button>
+			<button type="submit" class="btn btn-success  btn-sm btn-flat" id="guardar_oficios">Guardar congregación</button>
 		  </div>
 		  </form>
       </div>

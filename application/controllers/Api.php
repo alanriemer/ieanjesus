@@ -112,16 +112,20 @@ class Api extends CI_Controller {
           
           foreach($users->result() as $r) {
                $foto_pastor = explode("/", $r->foto_pastor);
+               $foto_pastor_parse = end($foto_pastor);
 
-               $foto_pastor = ($foto_pastor[3] != '') ? "<img class='zoom' src='/uploads/foto_pastor/$foto_pastor[3]' width='90px;'>" : "No tiene foto";
+               $foto_pastor = ($foto_pastor[3] != '') ? "<img class='zoom' src='/uploads/foto_pastor/$foto_pastor_parse' width='90px;'>" : "No tiene foto";
+               $estado = ($r->estado == 's')? '<small class="label pull-center bg-success" style="background-color: #00a65a;" >Activo</small>':'<span class="label pull-center bg-danger" style="background-color: #dd4b39;">Inactivo</span>';
+               $nombre_iglesia = ($r->nombre_iglesia != '')? '<small class="label pull-center bg-info" style="background-color: #428bca;" >'.$r->nombre_iglesia.'</small>' :  '<span class="label pull-center bg-danger" style="background-color: #dd4b39;">No asignado</span>';
                $data[] = array(
-                    $r->id,
+                    '',
                     $foto_pastor,
+                    $estado,
                     $r->nombre_pastor,
                     $r->apellido_pastor,
                     $r->cedula,
                     $r->fcha_nac,
-                    $r->nombre_iglesia
+                    $nombre_iglesia
                );
           }
 
@@ -135,6 +139,55 @@ class Api extends CI_Controller {
           exit();
             
     }    
+
+    public function crear_pastor(){
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}    
+        $config['upload_path'] = 'uploads/foto_pastor/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $new_name = date('Y-m-d').$_FILES["foto_pastor"]['name'];
+        $config['file_name'] = $new_name;
+    
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if ( ! $this->upload->do_upload('foto_pastor'))
+        {
+
+            echo  $this->upload->display_errors();
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+    
+           echo 'carga exitosa';
+        }
+	
+		$foto_pastor = ($_FILES["foto_pastor"]['name'] != '')?  '/archivos_ieanjesus/foto_pastor/'.$new_name : '/archivos_ieanjesus/foto_pastor/sin_foto.jpg';
+	    $insert = array(
+	        
+            'foto_pastor' => $foto_pastor,
+            'nombre_pastor' => $this->input->post('nombre_pastor'),
+            'apellido_pastor' => $this->input->post('apellido_pastor'),
+            'nombres_completos' => $this->input->post('nombre_pastor'). ' ' .$this->input->post('apellido_pastor'),
+            'cedula' =>$this->input->post('cedula'),
+            'fcha_nac' => $this->input->post('fecha_nacimiento'),
+            'celular' =>$this->input->post('celular'),
+            'titulo' =>$this->input->post('titulo_profesional'),
+            'cargo' =>$this->input->post('cargo_asignado'),
+            'licencia' =>$this->input->post('licencia'),
+            'zona' =>$this->input->post('zona_asignada'),
+            'aporte_iess' =>$this->input->post('aporte_iess'),
+            'valor_iess' =>$this->input->post('valor_iess'),
+            'aporte_cambia' =>$this->input->post('aporte_cambia'),
+            'valor_cambia' =>$this->input->post('valor_cambia'),            
+            
+            'observacion' =>  $this->input->post('observacion'),
+            'estado' => $this->input->post('estado')
+            );
+		$this->pastores_model->crear_pastor($insert);
+		redirect(base_url().'dashboard/pastores');
+	}
 
     public function get_provincias(){
     	if(!$this->session->userdata('logueado')){

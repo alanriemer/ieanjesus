@@ -84,7 +84,8 @@ class Users_model extends CI_Model{
 	    $query = $this->db->get();
 	    foreach ($query->result() as $row){
 	        $foto_pastor = explode("/", $row->foto_usuario);
-            $foto_pastor = ($foto_pastor[3] != '') ? $foto_pastor[3] : "user2-160x160.jpg";
+	        $foto_pastor_parse = end($foto_pastor);
+            $foto_pastor = ($foto_pastor[3] != '') ? $foto_pastor_parse : "user2-160x160.jpg";
         	$results['id'] = $row->id;	
         	$results['nombre'] = $row->nombre;
        		$results['apellido'] = $row->apellido;

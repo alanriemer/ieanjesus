@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg">
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header box box-default">
+      <div class="modal-header box box-success">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h3 class="modal-title">Nuevo Acta</h3>
       </div>

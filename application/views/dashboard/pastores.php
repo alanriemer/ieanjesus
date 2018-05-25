@@ -6,7 +6,7 @@
     			<i class='fa fa-users'></i><h3 class="box-title">Listado de pastores</h3>
     			
     			<div class="box-tools pull-right">	
-    		        <a href="<?php echo base_url();?>dashboard/crear_pastor" class="btn btn-danger btn-sm btn-flat" role="button"><span class="glyphicon glyphicon-plus" ></span>Nuevo pastor</a>
+    		        <button   data-toggle="modal" data-target="#crear_pastor"  class="btn btn-danger btn-sm btn-flat" role="button"><span class="glyphicon glyphicon-plus" ></span>Nuevo pastor</button>
     		    </div>	
     		</div>
 
@@ -16,15 +16,14 @@
                         <table id="pastores" class="table table-hover table-condensed table-bordered table-striped text-center">
                             <thead>
                                 <tr>
-                                    
-                                    <th class="text-center">id</th>
+                                    <th class="text-center"> </th>
                                     <th class="text-center">Foto Pastor</th>
+                                    <th class="text-center">Estado</th>
                                     <th class="text-center">Nombre Pastor</th>
                                     <th class="text-center">Apellido Pastor</th>
                                     <th class="text-center">Cedula</th>
                                     <th class="text-center">Fecha Nacimiento</th>
-                                    <th class="text-center">Nombre iglesia</th>
-                                    <th class="text-center">Opciones</th>
+                                    <th class="text-center">Congregación asignada</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,5 +35,7 @@
         </div>
             
 </section>
+
+<?php $crear_pastor;?>
 </div>
 
