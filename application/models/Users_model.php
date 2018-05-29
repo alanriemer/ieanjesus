@@ -121,5 +121,19 @@ class Users_model extends CI_Model{
             $this->db->where('id', $id);
             $this->db->delete('tbl_usuario'); 
         }
+        
+        public function get_notification($id_user){
+            $this->db->from('tbl_notifications');
+            $this->db->where('user_id', $id_user);
+            $this->db->order_by("id", "desc");
+            return $this->db->get();
+         
+        }
+        
+        public function update_notification($update){
+            extract($update);
+            $this->db->where('user_id', $user_id);
+            return $this->db->update('tbl_notifications', $update);
+        }        
 
 }

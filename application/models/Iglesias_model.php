@@ -45,25 +45,53 @@ from `tbl_iglesia` i INNER JOIN `tbl_congregacionales` c on i.`id_congregacion` 
         $query = $this->db->query("
             Select count(*) as total, year(l.fcha_bautizo) as fcha_bautizo
             from tbl_personal l
-            where l.id_congregacion = ".$id." 
-                   and l.fcha_bautizo is not NULL 
+            where  l.id_congregacion = ".$id." and l.fcha_bautizo is not NULL 
                    and l.fcha_bautizo != '0000-00-00'
             group by year(l.fcha_bautizo)
             order by l.fcha_bautizo");
     return $query->result_array();
     }
 
+
     public function paraGraficaTotalMiembrosPorcentaje($id){
         $query = $this->db->query("
             Select count(*) as value, year(l.fcha_bautizo) as name
             from tbl_personal l
-            where l.id_congregacion = ".$id." 
-                   and l.fcha_bautizo is not NULL 
+            where l.id_congregacion = ".$id." and l.fcha_bautizo is not NULL 
                    and l.fcha_bautizo != '0000-00-00'
             group by year(l.fcha_bautizo)
             order by l.fcha_bautizo");
     return $query->result_array();
     }
+
+    public function paraGraficaTotalMiembrosGlobal($id){
+        $query = $this->db->query("
+            Select count(*) as total, year(l.fcha_bautizo) as fcha_bautizo
+            from tbl_personal l
+            where l.fcha_bautizo is not NULL 
+                   and l.fcha_bautizo != '0000-00-00'
+            group by year(l.fcha_bautizo)
+            order by l.fcha_bautizo");
+    return $query->result_array();
+    }
+
+
+    public function paraGraficaTotalMiembrosPorcentajeGlobal($id){
+        $query = $this->db->query("
+            Select count(*) as value, year(l.fcha_bautizo) as name
+            from tbl_personal l
+            where l.fcha_bautizo is not NULL 
+                   and l.fcha_bautizo != '0000-00-00'
+            group by year(l.fcha_bautizo)
+            order by l.fcha_bautizo");
+    return $query->result_array();
+    }
+
+
+
+
+
+
 
     public function get_Congregacion($id){
         $this->db->select('nombre_iglesia');

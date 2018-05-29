@@ -78,271 +78,7 @@
   <input type="hidden" name="baseurl" id="baseurl" class="form-control" value="<?php echo base_url(); ?>">
 <div class="wrapper">
 
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="<?php echo base_url(); ?>dashboard" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>IEAN</b>JESUS</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>IEAN</b>JESUS</span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<?php echo base_url(); ?>vendor/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<?php echo base_url(); ?>vendor/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<?php echo base_url(); ?>vendor/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<?php echo base_url(); ?>vendor/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="<?php echo base_url(); ?>vendor/dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
-            </ul>
-          </li>
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label label-warning">10</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
-            </ul>
-          </li>
-          <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-flag-o"></i>
-              <span class="label label-danger">9</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 9 tasks</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Design some buttons
-                        <small class="pull-right">20%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
-              </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo base_url(); ?>uploads/foto_pastor/<?php echo $infouser['foto']; ?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo strtoupper($infouser['nombre_completo']) ; ?></span>
-            </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="<?php echo base_url(); ?>uploads/foto_pastor/<?php echo $infouser['foto']; ?>" class="img-circle" alt="User Image">
-
-                <p>
-                  <?php echo strtoupper($infouser['nombre_completo'])  ; ?>
-                  <small>Miembro de <?php  echo $infouser['nombre_iglesia'] ; ?></small>
-                  <small><b><?php  echo $infouser['nombre_perfil'] ; ?></b> <b> <?php  echo $junta = ($infouser['junta'] == 1)? '- Junta Administrativa': '' ; ?></b></small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?php echo base_url(); ?>autentication/cerrar_sesion" class="btn btn-default btn-flat">Salir</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+  <?php echo $menu_superior;?>
   <!-- Left side column. contains the logo and sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
@@ -428,7 +164,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+            <li><a href="<?php echo base_url();?>/dashboard/echart1"><i class="fa fa-circle-o"></i> ChartJS</a></li>
             <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
             <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
             <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
@@ -929,6 +665,10 @@
 
 <script src="<?php echo base_url(); ?>vendor/dist/js/demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+<!-- Notificaciones -->
+<script src="<?php echo base_url(); ?>vendor/dist/js/notifications.js"></script>
+
 <script>
 function initMap(){
   
@@ -1178,7 +918,7 @@ $(document).ready(function (){
         columnDefs: [ {
         "targets": 0,
         "data": null,
-        "defaultContent": '<div class="dropdown"><button class="btn btn-warning btn-sm btn-flat dropdown-toggle" type="button" data-toggle="dropdown">Opciones<span class="caret"></span></button><ul class="dropdown-menu">     <li><a href="#" title="Pastor"><i class="fa fa-paper-plane"></i> Pastor</a></li> <li><a href="#" title="Pastor"><i class="glyphicon glyphicon-cloud-upload"></i>  Pastor</a> </li><li><a href="#" title="Pastor"><i class="fa fa-file"></i> Pastor</a></li> <li><a href="#" title="Pastor"><i class="fa fa-eye"></i>Pastor</a></li> </ul></div>'
+        "defaultContent": '<div class="dropdown"><button class="btn btn-warning btn-sm btn-flat dropdown-toggle" type="button" data-toggle="dropdown">Opciones<span class="caret"></span></button><ul class="dropdown-menu"> <li><a href="#"  id="editar_pastor"  data-toggle="modal" data-target="#editar_pastor"  title="Pastor"><i class="fa fa-edit"></i>Ver/Editar</a></li>     <li><a href="#"  data-toggle="modal" data-target="#estado_pastor" id="estado_pastor" title="Pastor"><i class="fa fa-trash"></i> Cambiar estado</a></li> <li><a href="#" data-toggle="modal"  id="cambiar_foto_pastor" data-target="#cambiar_foto_pastor" title="Pastor"><i class="glyphicon glyphicon-picture"></i>Cambiar foto</a> </li><li><a href="#"data-toggle="modal" data-target="#congregacion_pastor"  id="asignar_congregacion_pastor" title="Pastor"><i class="fa fa-exchange"></i>Asignar congregación</a></li> <li><a href="#" data-toggle="modal" data-target="#historial_pastor" title="Pastor"><i class="fa fa-vcard-o"></i>Historial</a></li> </ul></div>'
         }
             
           ],
@@ -1186,6 +926,85 @@ $(document).ready(function (){
         lengthMenu: [ 5,10, 25, 50, 75, 100 ],
         pageLength: 5
     });
+    
+    
+ $('#pastores tbody').on( 'click', '#estado_pastor',
+ 
+        function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        document.getElementById("id_pastor").value =  data[1];
+    } );  
+    
+ $('#pastores tbody').on( 'click', '#cambiar_foto_pastor',
+ 
+        function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        document.getElementById("id_pastor_foto").value =  data[1];
+    } );   
+ $('#pastores tbody').on( 'click', '#asignar_congregacion_pastor',
+ 
+        function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        document.getElementById("id_pastor_congregacion").value =  data[1];
+    } );    
+    
+var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
+};    
+ $('#pastores tbody').on( 'click', '#editar_pastor',
+ 
+        function () {
+        var data = table.row( $(this).parents('tr') ).data();
+        getJSON('/api/get_pastor/'+data[1],
+        function(err, data) {
+          if (err !== null) {
+            alert('Hubo un error al obtener los datos del pastor: ' + err);
+          } else {
+             document.getElementById('modificar_id_pastor').value=data[0].id;
+            document.getElementById('modificar_cedula_pastor').value=data[0].cedula;
+            document.getElementById('modificar_nombre_pastor').value=data[0].nombre_pastor;
+            document.getElementById('modificar_apellido_pastor').value=data[0].apellido_pastor;
+            document.getElementById('modificar_fecha_nacimiento_pastor').value=data[0].fecha_nacimiento;
+            document.getElementById('modificar_celular_pastor').value=data[0].celular;
+            document.getElementById('modificar_titulo_pastor').value=data[0].titulo;
+            if (typeof data[0].cargo != 'undefined'){
+                document.getElementById('modificar_cargo_pastor').value=data[0].cargo;
+                document.getElementById('modificar_cargo_pastor').text=data[0].cargo;
+            }
+            if (typeof data[0].licencia != 'undefined'){
+                document.getElementById('modificar_licencia_pastor').value=data[0].licencia;
+                document.getElementById('modificar_licencia_pastor').text=data[0].licencia;
+            }
+            if (typeof data[0].zona != 'undefined'){
+                document.getElementById('modificar_zona_pastor').value=data[0].zona;
+                document.getElementById('modificar_zona_pastor').text=data[0].zona;
+            }
+            if (typeof data[0].aporte_iess != 'undefined'){
+            document.getElementById('modificar_aporte_iess_pastor').value=data[0].aporte_iess;
+            document.getElementById('modificar_aporte_iess_pastor').text=data[0].aporte_iess;
+            }
+            document.getElementById('modificar_valor_iess_pastor').value=data[0].valor_iess;
+            if (typeof data[0].aporte_cambia != 'undefined'){
+            document.getElementById('modificar_aporte_cambia_pastor').value=data[0].aporte_cambia;
+            document.getElementById('modificar_aporte_cambia_pastor').text=data[0].aporte_cambia;
+            }
+            document.getElementById('modificar_valor_cambia_pastor').value=data[0].valor_cambia;
+            document.getElementById('modificar_observacion_pastor').value=data[0].observacion;
+          }
+        });
+    } );        
+
 
 });
 </script>
@@ -1294,9 +1113,7 @@ $(function() {
 </script>
 <script src="/vendor/dist/ckeditor/ckeditor.js"></script>
 <script src="/vendor/dist/ckfinder/ckfinder.js"></script>
-
 <script src="<?php echo base_url(); ?>vendor/echarts/dist/echarts-en.js"></script>
-
 <script>
     $('p[data-toggle="tooltip"]').tooltip({
     animated: 'fade',
@@ -1304,9 +1121,7 @@ $(function() {
     html: true
 });
     </script>
-        <script src="<?php echo base_url(); ?>vendor/echarts/dist/echarts-en.js"></script>
-
-
+<script src="<?php echo base_url(); ?>vendor/echarts/dist/echarts-en.js"></script>
 <script type="text/javascript">
 var base = $('#baseurl').val(); 
 
@@ -1679,8 +1494,133 @@ option = {
         myChart.setOption(option);
 
 }, "json" );
-    </script>    
 
+
+
+
+
+
+
+
+
+
+$.get( base + "ajax/ajaxGetTotalMiembrosGlobal", { id_congregacion: $('#idc').val() }, function(data ) {
+  var myChart = echarts.init(document.getElementById('main10'));
+  var categorias = new Array();
+  var serie = new Array();
+  $.each(data, function(i, item) {
+    //console.log(item.fcha_bautizo);
+    //console.log(item.total);
+    categorias.push(item.fcha_bautizo);
+    serie.push(item.total);
+  });
+
+  option = {
+    title: {
+        text: 'IEANJESUS - ECUADOR',
+        subtext: 'Cantidad de miembros nuevos por año',
+        x:'center'
+    },
+    backgroundColor: '#eee',
+    // legend: {
+    //     data: categorias,
+    //     align: 'left',
+    //     left: 10
+    // },
+    // toolbox: {
+    //     feature: {
+    //         magicType: {
+    //             type: ['stack', 'tiled']
+    //         },
+    //         dataView: {}
+    //     }
+    // },
+    tooltip: {},
+    xAxis: {
+        type: 'category',
+        //data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        data: categorias
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        //data: [120, 200, 150, 80, 70, 110, 130],
+        label: {
+                normal: {
+                    show: true,
+                    position: 'inside'
+                }
+            },
+        data: serie,
+        type: 'bar'
+    }]
+};
+
+        // use configuration item and data specified to show chart
+        myChart.setOption(option);
+
+}, "json" );
+
+
+
+
+$.get( base + "ajax/paraGraficaTotalMiembrosPorcentajeGlobal", { id_congregacion: $('#idc').val() }, function(data ) {
+
+var categorias = new Array();
+var serie = new Array();
+$.each(data, function(i, item) {
+  categorias.push(item.name);
+  serie.push(item.value);
+});
+ //console.log('La longitud: '+ serie.length);
+ var porcentaje = new Array();
+for (var i=0; i < serie.length; i++){
+  //console.log(serie[i]);
+  porcentaje.push(((serie[i])/serie[i-1]).toFixed(2));
+}
+
+
+var jsonArray = JSON.parse(JSON.stringify(categorias));
+option = {
+  
+  title: {
+      text: 'IEANJESUS - ECUADOR',
+      subtext: 'Cantidad de miembros nuevos por año en porcentaje',
+      x:'center'
+  },
+  backgroundColor: '#eee',
+  tooltip: {},
+  xAxis: {
+      type: 'category',
+      data: categorias
+  },
+  yAxis: {
+      type: 'value'
+  },
+  series: [{
+      label: {
+              normal: {
+                  show: true,
+                  position: 'inside'
+              }
+          },
+      data: porcentaje,
+      type: 'line'
+  }]
+};
+var myChart = echarts.init(document.getElementById('main11'));
+myChart.setOption(option);
+
+}, "json" );
+    </script>    
+<script type="text/javascript">
+    $(document).ready(function () {
+        window.setInterval(function () {
+            notificationStream(3);
+        }, 1000);
+    });
+</script>
     
 </body>
 </html>

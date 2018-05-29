@@ -14,6 +14,12 @@ class Pastores_model extends CI_Model{
         return $query = $this->db->get();
     }
     
+    public function get_pastor($id){
+        $this->db->from('tbl_pastor');
+        $this->db->where('id', $id);
+        return $query = $this->db->get();
+    }
+        
     public function get_licencias(){
         $this->db->select('id_licencia, nombre_licencia');
         $this->db->from('tbl_licencia');
@@ -37,6 +43,30 @@ class Pastores_model extends CI_Model{
     }
     public function crear_pastor($insert){
         return $this->db->insert('tbl_pastor', $insert);
-    }    
+    } 
+    public function editar_pastor($update){
+        extract($update);
+        $this->db->where('id', $id);
+        return $this->db->update('tbl_pastor', $update);
+    }  
+    public function estado_pastor($update){
+        extract($update);
+        $this->db->where('id', $id);
+        return $this->db->update('tbl_pastor', $update);
+    }
+    
+    public function cambiar_foto_pastor($update){
+        extract($update);
+        $this->db->where('id', $id);
+        return $this->db->update('tbl_pastor', $update);
+    }   
+        
+    public function asignar_congregacion_pastor($update){
+        extract($update);
+        $this->db->where('id', $id);
+        return $this->db->update('tbl_pastor', $update);
+    }   
+    
+    
 
 }

@@ -1,3 +1,11 @@
+<?php echo $crear_pastor;?>
+<?php echo $estado_pastor;?>
+<?php echo $editar_pastor;?>
+<?php echo $foto_pastor;?>
+<?php echo $congregacion_pastor;?>
+<?php echo $historal_pastor;?>
+
+
 <!-- Main content -->
 <div class="content">
 <section class="col-lg-12 connectedSortable ui-sortable">
@@ -17,6 +25,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center"> </th>
+                                    <th class="text-center">ID</th>
                                     <th class="text-center">Foto Pastor</th>
                                     <th class="text-center">Estado</th>
                                     <th class="text-center">Nombre Pastor</th>
@@ -36,6 +45,7 @@
             
 </section>
 
-<?php $crear_pastor;?>
 </div>
+
+
 

@@ -8,6 +8,7 @@ class Api extends CI_Controller {
         $this->load->model('users_model');
         $this->load->model('pastores_model');
     }
+
     public function get_congregaciones(){
         if(!$this->session->userdata('logueado')){
     		redirect(base_url().'login');	
@@ -65,6 +66,7 @@ class Api extends CI_Controller {
           exit();
             
     }
+
     public function get_congregaciones_datatable(){
         if(!$this->session->userdata('logueado')){
     		redirect(base_url().'login');	
@@ -114,11 +116,31 @@ class Api extends CI_Controller {
                $foto_pastor = explode("/", $r->foto_pastor);
                $foto_pastor_parse = end($foto_pastor);
 
-               $foto_pastor = ($foto_pastor[3] != '') ? "<img class='zoom' src='/uploads/foto_pastor/$foto_pastor_parse' width='90px;'>" : "No tiene foto";
-               $estado = ($r->estado == 's')? '<small class="label pull-center bg-success" style="background-color: #00a65a;" >Activo</small>':'<span class="label pull-center bg-danger" style="background-color: #dd4b39;">Inactivo</span>';
+               $foto_pastor = ($foto_pastor[3] != '') ? "<img class='zoom img-circle' src='/uploads/foto_pastor/$foto_pastor_parse' width='70px;'>" : "No tiene foto";
+               
+
+               if ($r->estado == 'n') { 
+                   $estado = '<span class="label pull-center bg-danger" style="background-color: #dd4b39;">Inactivo</span>';
+               }
+                              
+               else if ($r->estado == 's') {  
+                   $estado = '<small class="label pull-center bg-success" style="background-color: #00a65a;" >Activo</small>';
+               }
+               
+                else if ($r->estado == 'Fallecido') {  
+                   $estado = '<small class="label pull-center bg-success" style="background-color: black;" >Fallecido</small>';
+               }
+                else if ($r->estado == 'Destituido' or $r->estado == 'Cesado') {  
+                   $estado = '<small class="label pull-center bg-success" style="background-color:  #428bca;" >'.$r->estado.'</small>';
+               }
+              
+               else {
+                   $estado = '<span class="label pull-center bg-danger" style="background-color: #dd4b39;">'. $r->estado .'</span>';
+               }
                $nombre_iglesia = ($r->nombre_iglesia != '')? '<small class="label pull-center bg-info" style="background-color: #428bca;" >'.$r->nombre_iglesia.'</small>' :  '<span class="label pull-center bg-danger" style="background-color: #dd4b39;">No asignado</span>';
                $data[] = array(
                     '',
+                    $r->id,
                     $foto_pastor,
                     $estado,
                     $r->nombre_pastor,
@@ -138,7 +160,82 @@ class Api extends CI_Controller {
           echo json_encode($output);
           exit();
             
-    }    
+    }  
+    
+    public function get_pastor($id_pastor){
+    	if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+
+          $pastor = $this->pastores_model->get_pastor($id_pastor);
+
+          $data = array();
+          
+          foreach($pastor->result() as $r) {
+             $data[] = array(
+                    "id"=>$r->id,
+                    "nombre_pastor"=>$r->nombre_pastor,
+                    "apellido_pastor"=> $r->apellido_pastor,
+                    "cedula"=>$r->cedula,
+                    "fecha_nacimiento"=>$r->fcha_nac,
+                    "celular"=> $r->celular,
+                    "cargo"=>$r->cargo,
+                    "titulo"=>$r->titulo,
+                    "licencia"=>$r->licencia,
+                    "zona"=>$r->zona,
+                    "aporte_iess"=>$r->aporte_iess,
+                    "valor_iess"=>$r->valor_iess,
+                    "aporte_cambia"=>$r->aporte_cambia,
+                    "valor_cambia"=>$r->valor_cambia,
+                    "observacion"=>$r->observacion
+                    );
+          }
+
+          echo json_encode($data);
+          exit();
+            
+    }  
+    
+    public function get_notifications_by_user($id_user){
+    	if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+
+        $notificaciones = $this->users_model->get_notification($id_user);
+
+        $data = array();
+          
+        foreach($notificaciones->result() as $r) {
+             $data[] = array(
+                    "id"=>$r->id,
+                    "fecha_creacion"=>$r->creation_date_time,
+                    "fecha_finalizacion"=> $r->view_date_time,
+                    "user_id"=>$r->user_id,
+                    "notificacion"=>$r->notification_text,
+                    "visto"=> $r->is_viewed,
+                    "tipo"=> $r->type
+                    );
+          }
+
+        echo json_encode($data);
+        exit();
+            
+    }      
+
+    public function update_notifications_by_user($id){
+    	if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+        $data = array(
+            "user_id"=>$id,
+            "is_viewed"=> "si"
+            );
+
+        $this->users_model->update_notification($data);
+
+            
+    }   
+
 
     public function crear_pastor(){
         if(!$this->session->userdata('logueado')){
@@ -146,7 +243,9 @@ class Api extends CI_Controller {
     	}    
         $config['upload_path'] = 'uploads/foto_pastor/';
         $config['allowed_types'] = 'gif|jpg|png';
-        $new_name = date('Y-m-d').$_FILES["foto_pastor"]['name'];
+        $path = $_FILES['foto_pastor']['name'];
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        $new_name = date('Ymd').rand().'.'.$ext;
         $config['file_name'] = $new_name;
     
         $this->load->library('upload', $config);
@@ -189,6 +288,101 @@ class Api extends CI_Controller {
 		redirect(base_url().'dashboard/pastores');
 	}
 
+    public function editar_pastor(){
+            if(!$this->session->userdata('logueado')){
+        		redirect(base_url().'login');	
+        	}
+        	
+    	    $update = array(
+    	        'id' => $this->input->post('modificar_id_pastor'),
+                'nombre_pastor' => $this->input->post('modificar_nombre_pastor'),
+                'apellido_pastor' => $this->input->post('modificar_apellido_pastor'),
+                'nombres_completos' => $this->input->post('modificar_nombre_pastor'). ' ' .$this->input->post('modificar_apellido_pastor'),
+                'cedula' =>$this->input->post('modificar_cedula_pastor'),
+                'fcha_nac' => $this->input->post('modificar_fecha_nacimiento_pastor'),
+                'celular' =>$this->input->post('modificar_celular_pastor'),
+                'titulo' =>$this->input->post('modificar_titulo_pastor'),
+                'cargo' =>$this->input->post('modificar_cargo_pastor'),
+                'licencia' =>$this->input->post('modificar_licencia_pastor'),
+                'zona' =>$this->input->post('modificar_zona_pastor'),
+                'aporte_iess' =>$this->input->post('modificar_aporte_iess_pastor'),
+                'valor_iess' =>$this->input->post('modificar_valor_iess_pastor'),
+                'aporte_cambia' =>$this->input->post('modificar_aporte_cambia_pastor'),
+                'valor_cambia' =>$this->input->post('modificar_valor_cambia_pastor'),            
+                'observacion' =>  $this->input->post('modificar_observacion_pastor')
+                );
+
+    		$this->pastores_model->editar_pastor($update);
+    		redirect(base_url().'dashboard/pastores');
+    	}
+	
+    public function estado_pastor(){
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+    	
+	    $update = array(
+	        'id' => $this->input->post('id_pastor'),
+	        'estado' =>$this->input->post('estado'),
+	        'id_congregacion' =>'',
+            'observacion' => $this->input->post('motivo').' - ' .$this->input->post('estado').' EN FECHA: '. $this->input->post('fecha')
+            );
+		$this->pastores_model->estado_pastor($update);
+		redirect(base_url().'dashboard/pastores');
+	}
+
+    public function cambiar_foto_pastor(){
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+    	$config['upload_path'] = 'uploads/foto_pastor/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        
+        $path = $_FILES['foto_pastor']['name'];
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        $new_name = date('Ymd').rand().'.'.$ext;
+        $config['file_name'] = $new_name;
+    
+        $this->load->library('upload', $config);
+        $this->upload->initialize($config);
+        if ( ! $this->upload->do_upload('foto_pastor'))
+        {
+
+            echo  $this->upload->display_errors();
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+    
+           echo 'carga exitosa';
+        }
+	
+		$foto_pastor = ($_FILES["foto_pastor"]['name'] != '')?  '/archivos_ieanjesus/foto_pastor/'.$new_name : '/archivos_ieanjesus/foto_pastor/sin_foto.jpg';
+    	
+	    $update = array(
+	        'id' => $this->input->post('id_pastor_foto'),
+	        'foto_pastor' => $foto_pastor
+            );
+		$this->pastores_model->cambiar_foto_pastor($update);
+		redirect(base_url().'dashboard/pastores');
+	}
+
+    public function asignar_congregacion_pastor(){
+        if(!$this->session->userdata('logueado')){
+    		redirect(base_url().'login');	
+    	}
+    	
+	    $update = array(
+	        'id' => $this->input->post('id_pastor_congregacion'),
+	        'asignado' => 'a',
+            'id_congregacion' => $this->input->post('id_congregacion'),
+            'observacion' => $this->input->post('observacion'),
+            'estado' => 's'
+            );
+		$this->pastores_model->asignar_congregacion_pastor($update);
+		redirect(base_url().'dashboard/pastores');
+	}
+
     public function get_provincias(){
     	if(!$this->session->userdata('logueado')){
     		redirect(base_url().'login');	
@@ -196,7 +390,6 @@ class Api extends CI_Controller {
             echo json_encode($this->actas_model->get_provincias(1));
             
     }
-
 
     public function get_canton(){
     	if(!$this->session->userdata('logueado')){
@@ -206,6 +399,7 @@ class Api extends CI_Controller {
         echo json_encode($this->actas_model->get_canton($provincia)); 
         
     }
+
     public function get_provincia_by_id($id){
     	if(!$this->session->userdata('logueado')){
     		redirect(base_url().'login');	

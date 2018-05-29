@@ -29,6 +29,20 @@ class Ajax extends CI_Controller {
         echo json_encode($this->iglesias_model->paraGraficaTotalMiembrosPorcentaje($id));
     }
 
+    public function ajaxGetTotalMiembrosGlobal(){
+        //$data['miembros'] = $this->iglesias_model->paraGraficaTotalMiembros();
+        //echo json_encode($data);
+        $id = $this->input->get('id_congregacion');
+		echo json_encode($this->iglesias_model->paraGraficaTotalMiembrosGlobal($id));
+    }
+
+    public function paraGraficaTotalMiembrosPorcentajeGlobal(){
+        //$data['miembros'] = $this->iglesias_model->paraGraficaTotalMiembros();
+        //echo json_encode($data);
+        $id = $this->input->get('id_congregacion');
+        echo json_encode($this->iglesias_model->paraGraficaTotalMiembrosPorcentajeGlobal($id));
+    }
+
     public function paraGraficaNacionalidad(){
         $id = $this->input->get('id_congregacion');
         echo json_encode($this->iglesias_model->paraGraficaNacionalidad($id));
